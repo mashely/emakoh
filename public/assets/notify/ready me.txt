@@ -1,0 +1,57 @@
+$.notify("Hello World");
+$(".elem-demo").notify("Hello Box");
+=========================================
+
+Success
+$.notify("Access granted", "success");
+Info
+$.notify("Do not press this button", "info");
+Warning
+$.notify("Warning: Self-destruct in 3.. 2..", "warn");
+Error
+$.notify("BOOM!", "error");
+=========================================================
+Positioning
+-----------------
+The position string option is used to describe both vertical and horizontal alignment. Element notifications and Global notifications can be vertically repositioned to: "top", "middle" or "bottom" and horozontally repositioned to: "left", "center" or "right". If we don't provide a position option the default alignments are defined in the default settings: globalPosition and elementPosition. When only one alignment is provided, the vertical alignment is middle and horizontal alignment is centre.
+
+$(".pos-demo").notify(
+  "I'm to the right of this box", 
+  { position:"right" }
+);
+---------------------------------------------
+Options
+---------
+The options object listed above are in the form below. This object below is the actual used to check option validity and set defaults.
+
+{
+  // whether to hide the notification on click
+  clickToHide: true,
+  // whether to auto-hide the notification
+  autoHide: true,
+  // if autoHide, hide after milliseconds
+  autoHideDelay: 5000,
+  // show the arrow pointing at the element
+  arrowShow: true,
+  // arrow size in pixels
+  arrowSize: 5,
+  // position defines the notification position though uses the defaults below
+  position: '...',
+  // default positions
+  elementPosition: 'bottom left',
+  globalPosition: 'top right',
+  // default style
+  style: 'bootstrap',
+  // default class (string or [string])
+  className: 'error',
+  // show animation
+  showAnimation: 'slideDown',
+  // show animation duration
+  showDuration: 400,
+  // hide animation
+  hideAnimation: 'slideUp',
+  // hide animation duration
+  hideDuration: 200,
+  // padding between element and notification
+  gap: 2
+}
