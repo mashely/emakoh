@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedBigInteger('gender_id'); // Change to unsignedBigInteger for referencing another table
+            $table->foreign('gender_id')->references('id')->on('genders');
             $table->string('password');
+            $table->string('phone');
+            $table->string('username')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
