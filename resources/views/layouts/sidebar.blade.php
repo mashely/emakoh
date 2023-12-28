@@ -22,11 +22,11 @@
         <!-- Light Logo-->
         <a href="#" class="logo logo-light">
             <span class="logo-sm">
-                <i id="fp-logo">Fp  </i>
+                <i id="fp-logo">Ed  </i>
                 {{-- <img src="{{ asset('assets/images/logo-sm.png')}}" alt="" height="22"> --}}
             </span>
             <span class="logo-lg">
-                <i id="fp-logo">Fp kidijitali </i>
+                <i id="fp-logo">edigital </i>
                 {{-- <img src="{{ asset('assets/images/logo-light.png')}}" alt="" height="17"> --}}
             </span>
         </a>
