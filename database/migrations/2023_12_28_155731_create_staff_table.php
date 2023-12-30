@@ -15,10 +15,15 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->bigIncrements('user_id');
-            $table->bigIncrements('hospital_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('hospital_id');
             $table->timestamps();
+
+            // Define foreign key constraints if needed
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
         });
+
     }
 
     /**

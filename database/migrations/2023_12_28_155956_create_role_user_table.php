@@ -14,11 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('role_user', function (Blueprint $table) {
-            $table->id();
-            $table->bigIncrements('user_id');
-            $table->bigIncrements('role_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('role_id');
             $table->timestamps();
+
+            // Define composite primary key
+            $table->primary(['user_id', 'role_id']);
+
+            // Define foreign key constraints if needed
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
+
     }
 
     /**

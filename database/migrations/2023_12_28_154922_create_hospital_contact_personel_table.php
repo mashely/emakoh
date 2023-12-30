@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->string('designation');
-            $table->bigIncrements('hospital_id');
+            $table->unsignedBigInteger('hospital_id');
             $table->timestamps();
+
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
         });
     }
 

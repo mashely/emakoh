@@ -16,20 +16,29 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->bigIncrements('gender_id');
-            $table->bigIncrements('id_type');
-            $table->bigIncrements('id_number');
-            $table->bigIncrements('region_id');
-            $table->bigIncrements('district_id');
-            $table->bigIncrements('ward_id');
+            $table->unsignedBigInteger('gender_id');
+            $table->unsignedBigInteger('id_type');
+            $table->unsignedBigInteger('id_number');
+            $table->unsignedBigInteger('region_id');
+            $table->unsignedBigInteger('district_id');
+            $table->unsignedBigInteger('ward_id');
             $table->string('physical_address');
             $table->string('phone_number');
             $table->string('patient_id');
-            $table->bigIncrements('hospital_id');
-            $table->bigIncrements('created_by');
+            $table->unsignedBigInteger('hospital_id');
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
+
+            // Define foreign key constraints if needed
+            $table->foreign('gender_id')->references('id')->on('genders');
+            $table->foreign('id_type')->references('id')->on('id_types');
+            $table->foreign('region_id')->references('id')->on('regions');
+            $table->foreign('district_id')->references('id')->on('districts');
+            $table->foreign('ward_id')->references('id')->on('wards');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

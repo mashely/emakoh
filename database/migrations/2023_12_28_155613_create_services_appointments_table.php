@@ -15,14 +15,21 @@ return new class extends Migration
     {
         Schema::create('service_appointments', function (Blueprint $table) {
             $table->id();
-            $table->bigIncrements('patient_id');
-            $table->bigIncrements('created_by');
-            $table->bigIncrements('service_id');
+            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('service_id');
             $table->string('start_date');
             $table->string('end_date');
-            $table->bigIncrements('hospital_id');
+            $table->unsignedBigInteger('hospital_id');
             $table->timestamps();
+
+            // Define foreign key constraints if needed
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
         });
+
     }
 
     /**

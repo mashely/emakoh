@@ -20,7 +20,10 @@ class UserSeeder extends Seeder
          // Generate user data here
          $users = [
             [
+                'name'=>'admin mashely',
                 'email'=>'admin@gmail.com',
+                'phone'=>'0765591131',
+                'gender_id'=>'1',
                 'password' => Hash::make('password'),
             ]
             ];
