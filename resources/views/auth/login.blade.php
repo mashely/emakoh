@@ -63,27 +63,27 @@
                             <div class="col-lg-6">
                                 <div class="p-lg-5 p-4">
                                     <div>
-                                        <h5 class="text-primary">Welcome Back !</h5>
+                                        <h5 class="text-primary">Welcome Back</h5>
                                         <p class="text-muted">Sign in to continue to Fp Kidijitali.</p>
                                     </div>
-    
+
                                     <div class="mt-4">
                                         <form id="user_auth">
-            
+
                                             <div class="mb-3">
-                                                <label for="username" class="form-label">Username /Email </label>
+                                                <label for="username" class="form-label">Username / Email </label>
                                                 <input type="email" class="form-control" id="username" name="username" placeholder="Enter username / Email" required>
                                             </div>
-                    
+
                                             <div class="mb-3">
-                                                
+
                                                 <label class="form-label" for="password-input">Password</label>
                                                 <div class="position-relative auth-pass-inputgroup mb-3">
                                                     <input type="password" name="password" class="form-control pe-5" placeholder="Enter password" id="password-input" required>
                                                     <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                                 </div>
                                             </div>
-                    
+
                                             <div class="form-check">
                                                 <input class="form-check-input" name="remember" type="checkbox" value="1" id="auth-remember-check">
                                                 <label class="form-check-label" for="auth-remember-check">Remember me</label>
@@ -97,7 +97,7 @@
                                             </div>
 
                                             <div class="mt-4">
-                                                <button class="btn btn-success w-100" id="user_btn" type="submit"> <i class="bx bx-lock-open-alt"></i> Sign In</button>
+                                                <button class="btn btn-success w-100" name="submit" id="user_btn" type="submit"> <i class="bx bx-lock-open-alt"></i> Sign In</button>
                                             </div>
                                         </form>
                                     </div>
@@ -133,7 +133,7 @@
     </footer>
     <!-- end Footer -->
 </div>
-<!-- end auth-page-wrapper -->    
+<!-- end auth-page-wrapper -->
 @endsection
 
 @push('scripts')
@@ -147,7 +147,6 @@
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
              }
             });
-  
         $.ajax({
         type:'POST',
         url:"{{ route('authentication')}}",
@@ -158,7 +157,6 @@
           setTimeout(function(){
             window.location.href=response.url;
           },500);
-         
         },
         error:function(response){
             console.log(response.responseText);
@@ -183,5 +181,5 @@
     });
     });
   </script>
-    
+
 @endpush

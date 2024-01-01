@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class GenderSeeder extends Seeder
+class UserRoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,17 +16,13 @@ class GenderSeeder extends Seeder
      */
     public function run()
     {
-        $genders = [
+        $userroles = [
             [
-                'id'=>1,
-                'name'=>'male'
-            ],
-            [
-                'id'=>2,
-                'name'=>'female'
+                'user_id'=>1,
+                'role_id'=>1
             ]
             ];
-             // Insert users into the 'users' table
-        DB::table('genders')->insert($genders);
+             // Insert role_users into the 'roles' table
+        DB::table('role_user')->insert($userroles);
     }
 }
