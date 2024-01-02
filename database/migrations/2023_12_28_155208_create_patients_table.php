@@ -32,7 +32,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Define foreign key constraints if needed
-            $table->foreign('gender_id')->references('id')->on('genders');
+            $table->foreign('gender_id')->references('id')->on('gender');
             $table->foreign('id_type')->references('id')->on('id_types');
             $table->foreign('region_id')->references('id')->on('regions');
             $table->foreign('district_id')->references('id')->on('districts');

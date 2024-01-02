@@ -27,6 +27,6 @@ class GenderSeeder extends Seeder
             ]
             ];
              // Insert users into the 'users' table
-        DB::table('genders')->insert($genders);
+        DB::table('gender')->insert($genders);
     }
 }
