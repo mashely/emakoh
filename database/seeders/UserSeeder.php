@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 
 class UserSeeder extends Seeder
@@ -20,12 +22,15 @@ class UserSeeder extends Seeder
          // Generate user data here
          $users = [
             [
-                'name'=>'admin mashely',
+                'name'=>'Admin Mashely',
                 'email'=>'admin@gmail.com',
                 'username'=>'admin@gmail.com',
                 'phone'=>'0765591131',
                 'gender_id'=>'1',
+                'active' =>1,
+                'email_verified_at' => now(),
                 'password' => Hash::make('password'),
+                'remember_token' => Str::random(10)
             ]
             ];
              // Insert users into the 'users' table
