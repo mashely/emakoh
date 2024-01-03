@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('wards', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('dis_code');
+            $table->string('ward_code');
+            $table->string('ward_name');
             $table->timestamps();
         });
     }

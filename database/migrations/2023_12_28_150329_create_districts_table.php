@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('reg_code');
+            $table->string('dis_code');
+            $table->string('dis_name');
             $table->timestamps();
         });
     }
