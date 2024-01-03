@@ -196,7 +196,7 @@ nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-
                                         <select class="form-select" name="region" id="region_id" >
                                             <option value="">Please Choose Region</option>
                                             @foreach ($regions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->reg_name }}</option>
+                                            <option value="{{ $item->reg_code }}">{{ $item->reg_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

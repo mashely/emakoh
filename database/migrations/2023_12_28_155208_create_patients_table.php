@@ -38,7 +38,6 @@ return new class extends Migration
             $table->foreign('district_id')->references('id')->on('districts');
             $table->foreign('ward_id')->references('id')->on('wards');
             $table->foreign('hospital_id')->references('id')->on('hospitals');
-            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

@@ -58,7 +58,7 @@ class RegistrationController extends Controller
         $district_output=array();
         $district_output [] ="<option value='' Selected>Please Choose District</option>";
           foreach($districts as $row ) {
-              $district_output[] = '<option value="'.$row->id.'">'.$row->dis_name.'</option>';
+              $district_output[] = '<option value="'.$row->dis_code.'">'.$row->dis_name.'</option>';
           }
          return $district_output;
     }
@@ -68,7 +68,7 @@ class RegistrationController extends Controller
         $wards_output=array();
         $wards_output [] ="<option value='' Selected>Please Choose Ward</option>";
           foreach($wards as $row ) {
-              $wards_output[] = '<option value="'.$row->id.'">'.$row->ward_name.'</option>';
+              $wards_output[] = '<option value="'.$row->ward_code.'">'.$row->ward_name.'</option>';
           }
          return $wards_output;
     }

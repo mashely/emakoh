@@ -27,7 +27,6 @@ return new class extends Migration
 
             // Define foreign key constraints if needed
             $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('service_id')->references('id')->on('services');
             $table->foreign('hospital_id')->references('id')->on('hospitals');
         });

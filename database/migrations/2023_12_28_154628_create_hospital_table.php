@@ -29,7 +29,6 @@ return new class extends Migration
             $table->foreign('region_id')->references('id')->on('regions');
             $table->foreign('district_id')->references('id')->on('districts');
             $table->foreign('ward_id')->references('id')->on('wards');
-            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 
