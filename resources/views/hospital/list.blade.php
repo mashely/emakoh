@@ -36,11 +36,11 @@
                                             <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
                                                 <i class="ri-add-line align-bottom me-1"></i> Add Hospital
                                             </button>
-                                       
+
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="table-responsive table-card mt-3 mb-1">
                                 <table class="table align-middle table-nowrap table-hover table-striped" id="table_id">
                                     <thead class="table-light">
@@ -75,9 +75,9 @@
                                             </td>
                                             <td>
                                                 @if ($hospital->status == "Active")
-                                                <span class="badge badge-soft-success text-uppercase">Active</span> 
+                                                <span class="badge badge-soft-success text-uppercase">Active</span>
                                                 @else
-                                                <span class="badge badge-soft-danger text-uppercase">InActive</span> 
+                                                <span class="badge badge-soft-danger text-uppercase">InActive</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -91,7 +91,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <button class="btn btn-info btn-sm edit-btn" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" 
+                                                <button class="btn btn-info btn-sm edit-btn" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
                                                 data-id ={{ $hospital->id}} data-name ={{ $hospital->name }}
                                                 data-phone_number ={{ $hospital->phone_number }} data-email ={{ $hospital->email }}
                                                 data-region ={{ $hospital->region->name   }}  data-district ={{ $hospital->district->name   }}
@@ -103,11 +103,11 @@
                                             </td>
 
                                             </tr>
-                                            
+
                                         @endforeach
                                     </tbody>
                                 </table>
-                             
+
                             </div>
                         </div>
                     </div><!-- end card -->
@@ -118,7 +118,7 @@
         </div>
         <!-- end row -->
 
-      
+
         <!-- end row -->
 
        <!-- Modal -->
@@ -180,7 +180,7 @@
                                 <div class="d-flex align-items-start gap-3 mt-4">
                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
 nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address</button>
-                                </div>  
+                                </div>
                             </div>
                             <!-- end tab pane -->
 
@@ -196,7 +196,7 @@ nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-
                                         <select class="form-select" name="region" id="region_id" >
                                             <option value="">Please Choose Region</option>
                                             @foreach ($regions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->id }}">{{ $item->reg_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -317,7 +317,7 @@ nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-ic
                                 <div class="d-flex align-items-start gap-3 mt-4">
                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
 nexttab" data-nexttab="steparrow-description-info-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address info</button>
-                                </div>  
+                                </div>
                             </div>
                             <!-- end tab pane -->
 
@@ -328,7 +328,7 @@ nexttab" data-nexttab="steparrow-description-info-tab"><i class="ri-arrow-right-
                                         <select class="form-select" name="region" id="region_id" >
                                             <option id="region" value="" selected></option>
                                             @foreach ($regions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->id }}">{{ $item->reg_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -391,7 +391,7 @@ nexttab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>U
     </div>
 </div>
 
-       
+
 
     </div>
     <!-- container-fluid -->
@@ -438,7 +438,7 @@ nexttab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>U
       $(document).ready(function(){
         $('#register_btn').on('click',function(e){
             e.preventDefault();
-        
+
          var dataz =$("#registration_form").serialize();
 
         $.ajaxSetup({
@@ -552,7 +552,7 @@ nexttab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>U
     $(document).ready(function(){
       $('#update_form').on('submit',function(e){
           e.preventDefault();
-      
+
        var dataz =$("#update_form").serialize();
 
       $.ajaxSetup({
@@ -594,5 +594,5 @@ nexttab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>U
   });
   });
 </script>
-    
+
 @endpush

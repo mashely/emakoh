@@ -15,9 +15,9 @@ class HospitalController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    
+
     public function list(){
-        $regions  =Region::orderby('name','ASC')->get();
+        $regions  =Region::orderby('reg_name','ASC')->get();
         $hospitals =Hospital::orderby('name','ASC')->get();
         return view('hospital.list',compact('regions','hospitals'));
     }
@@ -70,8 +70,8 @@ class HospitalController extends Controller
                 'errors'  =>'Hospital Registration Failed'
             ],500);
         }
-        
-    }   
+
+    }
 
     public function update(Request $request){
         $this->validate($request,[
@@ -118,6 +118,6 @@ class HospitalController extends Controller
                 'errors'  =>'Hospital Update Failed'
             ],500);
         }
-        
-    }   
+
+    }
 }

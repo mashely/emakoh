@@ -23,7 +23,11 @@ class RoleSeeder extends Seeder
             ],
             [
                 'id'=>2,
-                'name'=>'HR'
+                'name'=>'Staff'
+            ],
+            [
+                'id'=>3,
+                'name'=>'Nurse'
             ]
             ];
              // Insert users into the 'roles' table

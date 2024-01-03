@@ -36,11 +36,11 @@
                                             <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" data-bs-target="#showModal" >
                                                 <i class="ri-add-line align-bottom me-1"></i> Add User
                                             </button>
-                                       
+
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="table-responsive table-card mt-3 mb-1">
                                 <table class="table align-middle table-nowrap table-hover table-striped" id="table_id">
                                     <thead class="table-light">
@@ -57,9 +57,9 @@
                                             </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)   
-                                       
-                                      
+                                        @foreach ($users as $user)
+
+
                                             @if ($user->hasRole(1))
                                             <tr>
                                                 <td >{{ $loop->iteration }}</td>
@@ -71,30 +71,30 @@
                                                 <td>{{ $user->roles->userRole->name }}</td>
                                                 <td>
                                                     @if ($user->active == 1)
-                                                    <span class="badge badge-soft-success text-uppercase">Active</span> 
+                                                    <span class="badge badge-soft-success text-uppercase">Active</span>
                                                     @else
-                                                    <span class="badge badge-soft-danger text-uppercase">InActive</span> 
+                                                    <span class="badge badge-soft-danger text-uppercase">InActive</span>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-info btn-sm edit-btn" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" data-id="{{ $user->id}}" 
+                                                    <button class="btn btn-info btn-sm edit-btn" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" data-id="{{ $user->id}}"
                                                         data-name ="{{ $user->name }}" data-phone="{{ $user->phone }}"
                                                         ><i class="bx bx-edit"></i> Edit </button>
                                                         @if ($user->active == 1)
-                                                        <button class="btn btn-warning btn-sm" title="Disable" id="{{$user->id}}" onclick="disable_user(id)"> <span class="bx bxs-user-minus"></span>Disable</button>   
+                                                        <button class="btn btn-warning btn-sm" title="Disable" id="{{$user->id}}" onclick="disable_user(id)"> <span class="bx bxs-user-minus"></span>Disable</button>
                                                         @else
-                                                        <button class="btn btn-success btn-sm" title="Enable" id="{{$user->id}}" onclick="enable_user(id)"> <span class="bx bxs-user-check "></span>Enable</button>   
+                                                        <button class="btn btn-success btn-sm" title="Enable" id="{{$user->id}}" onclick="enable_user(id)"> <span class="bx bxs-user-check "></span>Enable</button>
                                                         @endif
                                                 </td>
-                                                </tr>  
-                                                
+                                                </tr>
+
                                             @endif
-                                          
-                                      
+
+
                                         @endforeach
                                     </tbody>
                                 </table>
-                             
+
                             </div>
                         </div>
                     </div><!-- end card -->
@@ -105,7 +105,7 @@
         </div>
         <!-- end row -->
 
-      
+
         <!-- end row -->
 
        <!-- Modal -->
@@ -176,7 +176,7 @@
                                 <div class="d-flex align-items-start gap-3 mt-4">
                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
 nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address</button>
-                                </div>  
+                                </div>
                             </div>
                             <!-- end tab pane -->
 
@@ -218,7 +218,7 @@ nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-ic
                                         <select name="role_id" class="form-select" id="">
                                             <option value="" selected>Please Select Role</option>
                                             @foreach ($roles as $item)
-                                                <option value="{{ $item->id }}">{{ $item->description }}</option>
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -280,7 +280,7 @@ nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-ic
                             <input type="hidden" name="user_id" id="user_id">
                         </div>
                         <div class="mb-3" id="update_alert">
-    
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -294,7 +294,7 @@ nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-ic
         </div>
     </div>
 
-       
+
 
     </div>
     <!-- container-fluid -->
@@ -341,7 +341,7 @@ nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-ic
       $(document).ready(function(){
         $('#register_btn').on('click',function(e){
             e.preventDefault();
-        
+
          var dataz =$("#registration_form").serialize();
 
         $.ajaxSetup({
@@ -398,7 +398,7 @@ nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-ic
     $(document).ready(function(){
         $('#edit_form').on('submit',function(e){
             e.preventDefault();
-        
+
          var dataz =$(this).serialize();
 
         $.ajaxSetup({
@@ -440,5 +440,5 @@ nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-ic
     });
     });
 </script>
-    
+
 @endpush

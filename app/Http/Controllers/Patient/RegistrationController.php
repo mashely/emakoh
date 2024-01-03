@@ -36,11 +36,11 @@ class RegistrationController extends Controller
         $id_number    =$request->input('id_number');
         $client_id    =$request->input('client_id');
         $phone_number =$request->input('phone_number');
- 
+
         $client =new Patient;
         $clients =$client->searchClient($id_number,$client_id,$phone_number);
         return view('patients.list',compact('clients'));
-        
+
      }
 
     public function edit($id){
@@ -54,21 +54,21 @@ class RegistrationController extends Controller
     }
 
     public function district($region_id){
-        $districts =District::where('region_id',$region_id)->orderBy('name','ASC')->get();
+        $districts =District::where('reg_code',$region_id)->orderBy('dis_name','ASC')->get();
         $district_output=array();
         $district_output [] ="<option value='' Selected>Please Choose District</option>";
           foreach($districts as $row ) {
-              $district_output[] = '<option value="'.$row->id.'">'.$row->name.'</option>';
+              $district_output[] = '<option value="'.$row->id.'">'.$row->dis_name.'</option>';
           }
          return $district_output;
     }
 
     public function ward($district_id){
-        $wards =Ward::where('district_id',$district_id)->orderBy('name','ASC')->get();
+        $wards =Ward::where('dis_code',$district_id)->orderBy('ward_name','ASC')->get();
         $wards_output=array();
         $wards_output [] ="<option value='' Selected>Please Choose Ward</option>";
           foreach($wards as $row ) {
-              $wards_output[] = '<option value="'.$row->id.'">'.$row->name.'</option>';
+              $wards_output[] = '<option value="'.$row->id.'">'.$row->ward_name.'</option>';
           }
          return $wards_output;
     }
@@ -85,7 +85,7 @@ class RegistrationController extends Controller
     public function create(Request $request){
         $this->validate($request,[
             'first_name' =>'required',
-            'last_name'  =>'required', 
+            'last_name'  =>'required',
             'gender'     =>'required',
             'marital_status' =>'required',
             'dob'        =>'required',
@@ -98,7 +98,7 @@ class RegistrationController extends Controller
             'end_date'       =>'required',
             'id_type'        =>'required',
         ]);
-        
+
         $id_number      =$request->input('id_number');
         $first_name     =$request->input('first_name');
         $middle_name    =$request->input('middle_name');
@@ -154,10 +154,10 @@ class RegistrationController extends Controller
                 'errors'  =>'Client Registration Failed'
             ],500);
         }
-        
+
     }
 
-   
+
 
     public function update(Request $request){
         $this->validate($request,[
@@ -170,7 +170,7 @@ class RegistrationController extends Controller
             'ward'           =>'required',
             'phone_number'   =>'required',
         ]);
-        
+
         $id_number      =$request->input('id_number');
         $first_name     =$request->input('first_name');
         $middle_name    =$request->input('middle_name');
