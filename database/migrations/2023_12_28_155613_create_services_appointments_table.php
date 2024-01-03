@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('service_id');
             $table->string('start_date');
             $table->string('end_date');
+            $table->tinyInteger('status')->nullable();
+            $table->string('edit_reason')->nullable();
             $table->unsignedBigInteger('hospital_id');
             $table->timestamps();
 
