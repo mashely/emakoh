@@ -18,7 +18,7 @@ class HospitalController extends Controller
     }
     
     public function index(){
-        $regions  =Region::orderby('name','ASC')->get();
+        $regions  =Region::orderby('reg_name','ASC')->get();
         return view('report.hospital.list',compact('regions'));
     }
 
