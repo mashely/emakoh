@@ -22,8 +22,9 @@ return new class extends Migration
             $table->foreign('gender_id')->references('id')->on('gender');
             $table->string('password');
             $table->string('phone');
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->nullable();
             $table->string('username')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable(); // Foreign key to users table
             $table->rememberToken();
             $table->timestamps();
         });
