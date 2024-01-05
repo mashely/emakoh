@@ -25,6 +25,7 @@ return new class extends Migration
             $table->tinyInteger('active')->nullable();
             $table->string('username')->nullable();
             $table->unsignedBigInteger('created_by')->nullable(); // Foreign key to users table
+            $table->unsignedBigInteger('updated_by')->nullable(); // Foreign key to users table
             $table->rememberToken();
             $table->timestamps();
         });
