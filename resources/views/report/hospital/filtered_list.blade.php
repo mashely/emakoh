@@ -22,18 +22,18 @@
             <td >P:N-{{ $hospital->phone_number }} <br>
                 E:A -{{ $hospital->email }}
             </td>
-            <td >R-{{ $hospital->region->name }} <br>
-                D-{{ $hospital->district->name }} <br>
-                W-{{ $hospital->ward->name }}
+            <td >R-{{ $hospital->region->reg_name }} <br>
+                D-{{ $hospital->district->dis_name }} <br>
+                W-{{ $hospital->ward->ward_name }}
             </td>
             <td >F:N-{{ $hospital->personel->name }} <br>
                 P:N -{{ $hospital->personel->phone_number }}
             </td>
             <td>
                 @if ($hospital->status == "Active")
-                <span class="badge badge-soft-success text-uppercase">Active</span> 
+                <span class="badge badge-soft-success text-uppercase">Active</span>
                 @else
-                <span class="badge badge-soft-danger text-uppercase">InActive</span> 
+                <span class="badge badge-soft-danger text-uppercase">InActive</span>
                 @endif
             </td>
             <td>
@@ -47,7 +47,7 @@
                 </a>
             </td>
             <td>
-                <button class="btn btn-info btn-sm edit-btn" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit" 
+                <button class="btn btn-info btn-sm edit-btn" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
                 data-id ={{ $hospital->id}} data-name ={{ $hospital->name }}
                 data-phone_number ={{ $hospital->phone_number }} data-email ={{ $hospital->email }}
                 data-region ={{ $hospital->region->name   }}  data-district ={{ $hospital->district->name   }}
@@ -59,7 +59,7 @@
             </td>
 
             </tr>
-            
+
         @endforeach
     </tbody>
 </table>

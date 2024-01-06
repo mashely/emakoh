@@ -48,7 +48,7 @@ class RegistrationController extends Controller
         $gender   =Gender::orderby('name','ASC')->whereNot('id',3)->get();
         $idtype   =IdType::get();
         $services =Service::orderby('name','ASC')->get();
-        $regions  =Region::orderby('name','ASC')->get();
+        $regions  =Region::orderby('reg_name','ASC')->get();
         $marital_status =MaritalStatus::orderby('name','ASC')->whereNot('id',4)->get();
         return view('patients.edit',compact('client','gender','idtype','services','marital_status','regions'));
     }
@@ -77,7 +77,7 @@ class RegistrationController extends Controller
         $gender   =Gender::orderby('name','ASC')->whereNot('id',3)->get();
         $idtype   =IdType::get();
         $services =Service::orderby('name','ASC')->get();
-        $regions  =Region::orderby('name','ASC')->get();
+        $regions  =Region::orderby('reg_name','ASC')->get();
         $marital_status =MaritalStatus::orderby('name','ASC')->whereNot('id',4)->get();
         return view('patients.add',compact('gender','idtype','services','marital_status','regions'));
     }

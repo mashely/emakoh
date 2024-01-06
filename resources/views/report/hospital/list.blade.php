@@ -46,7 +46,7 @@
                                         <select class="form-select" name="region" id="region_id" >
                                             <option value="" selected>Please Choose Region</option>
                                             @foreach ($regions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->reg_code }}">{{ $item->reg_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -63,12 +63,12 @@
                                         <button type="button" class="btn btn-primary" style="margin-right: 10px" id="filter_btn"> <i class="las la-search"></i> View Report</button>
                                         <button type="submit" class="btn btn-info"> <i class="las la-file-excel"></i> Generate Report</button>
                                     </div>
-                                  
+
                                 </div>
                             </form>
-                            
+
                             <div class="table-responsive table-card mt-3 mb-1" id="search_result">
-                             
+
                             </div>
                         </div>
                     </div><!-- end card -->
@@ -79,13 +79,13 @@
         </div>
         <!-- end row -->
 
-      
+
         <!-- end row -->
 
        <!-- Modal -->
     <!--end modal -->
         <!-- end row -->
-     
+
     {{-- edit modal --}}
 
     <div class="modal fade" id="showModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -138,7 +138,7 @@
                                 <div class="d-flex align-items-start gap-3 mt-4">
                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
 nexttab" data-nexttab="steparrow-description-info-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address info</button>
-                                </div>  
+                                </div>
                             </div>
                             <!-- end tab pane -->
 
@@ -149,7 +149,7 @@ nexttab" data-nexttab="steparrow-description-info-tab"><i class="ri-arrow-right-
                                         <select class="form-select" name="region" id="region_id" >
                                             <option id="region" value="" selected></option>
                                             @foreach ($regions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -212,7 +212,7 @@ nexttab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>U
     </div>
 </div>
 
-       
+
 
     </div>
     <!-- container-fluid -->
@@ -328,7 +328,7 @@ nexttab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>U
     $(document).ready(function(){
       $('#update_form').on('submit',function(e){
           e.preventDefault();
-      
+
        var dataz =$("#update_form").serialize();
 
       $.ajaxSetup({
@@ -399,13 +399,13 @@ nexttab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>U
                   $('#filter_btn').html('<i class="las la-search"></i> View Report');
                   $('#filter_btn').attr('disabled', false);
                 }
-      
+
 
         });
     });
     });
 
-   
+
 </script>
-    
+
 @endpush

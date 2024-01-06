@@ -72,12 +72,12 @@
                                                                 <label for="firstName" class="form-label"> First name <i id="required-field"> * </i> </label>
                                                                 <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="first_name" required>
                                                             </div>
-                                                    
+
                                                             <div class="col-sm-6">
                                                                 <label for="lastName" class="form-label">Middle name</label>
                                                                 <input type="text" class="form-control" id="middleName" placeholder="Enter Middle Name" name="middle_name">
                                                             </div>
-                                                    
+
                                                             <div class="col-sm-6">
                                                                 <label for="username" class="form-label">Last Name <i id="required-field"> * </i></label>
                                                                 <div class="input-group">
@@ -126,16 +126,16 @@
                                                                 <input type="twxt" class="form-control" id="idnumber" name="id_number" placeholder="Enter Id Number">
                                                             </div>
                                                         </div>
-                                                   
+
                                                         <P><b>NOTE: Those field marked with <span id="required-field">*</span> are mandatory field</b></P>
-                                                        
+
                                                     </div>
                                                 </div>
 
                                                 <div class="d-flex align-items-start gap-3 mt-4">
                                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
 nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address</button>
-                                                </div> 
+                                                </div>
                                             </div>
                                             <!-- end tab pane -->
                                             <div class="tab-pane fade " id="v-pills-bill-address" role="tabpanel" aria-labelledby="v-pills-bill-address-tab">
@@ -150,18 +150,18 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                             <select class="form-select" name="region" id="region_id" >
                                                                 <option value="">Please Choose Region</option>
                                                                 @foreach ($regions as $item)
-                                                                <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                                                <option value="{{ $item->reg_code }}">{{ $item->reg_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                    
+
                                                         <div class="col-md-4">
                                                             <label for="district_id" class="form-label">District <i id="required-field"> * </i></label>
                                                             <select class="form-select" name="district" id="district_id">
                                                                 <option value="" selected>Please Choose District</option>
                                                             </select>
                                                         </div>
-                                                    
+
                                                         <div class="col-md-4">
                                                             <label for="zip" class="form-label">Ward <i id="required-field"> * </i></label>
                                                             <select name="ward" class="form-select"  id="ward_id">
@@ -176,7 +176,7 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                         </div>
 
                                                     </div>
-                                                    
+
                                                     <hr class="my-4 text-muted">
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -186,7 +186,7 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
 
                                                     </div>
                                                     <P style="margin-top: 15px;"><b>NOTE: Those field marked with <span id="required-field">*</span> are mandatory field</b></P>
-                                                   
+
                                                 </div>
                                                 <div class="d-flex align-items-start gap-3 mt-4">
                                                     <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back to Address</button>
@@ -201,7 +201,7 @@ nexttab" data-nexttab="v-pills-payment-tab"><i class="ri-arrow-right-line label-
                                                 </div>
 
                                                 <div>
-                                                    
+
                                                     <div class="row gy-3">
                                                         <div class="col-md-12">
                                                             <label for="cc-number" class="form-label">Type of service <i id="required-field"> * </i></label>
@@ -212,12 +212,12 @@ nexttab" data-nexttab="v-pills-payment-tab"><i class="ri-arrow-right-line label-
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                    
+
                                                         <div class="col-md-6">
                                                             <label for="cc-expiration" class="form-label">Start Date <i id="required-field"> * </i></label>
                                                             <input type="date" class="form-control" name="start_date" min="{{ date('Y-m-d')}}" required>
                                                         </div>
-                                                    
+
                                                         <div class="col-md-6">
                                                             <label for="cc-cvv" class="form-label">End Date <i id="required-field"> * </i></label>
                                                             <input type="date" class="form-control" name="end_date" min="{{ date('Y-m-d')}}" required>
@@ -295,7 +295,7 @@ nexttab" ><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>
     </div>
     <!-- container-fluid -->
 </div>
-    
+
 @endsection
 
 @push('scripts')
@@ -339,7 +339,7 @@ nexttab" ><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>
       $(document).ready(function(){
         $('#patient_btn').on('click',function(e){
             e.preventDefault();
-        
+
          var dataz =$("#patient_reg").serialize();
 
         $.ajaxSetup({
@@ -417,5 +417,5 @@ nexttab" ><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>
             });
         });
 </script>
-    
+
 @endpush

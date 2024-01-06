@@ -20,9 +20,9 @@ class ClientController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    
+
     public function index(){
-        $regions  =Region::orderby('name','ASC')->get(); 
+        $regions  =Region::orderby('reg_name','ASC')->get();
         $gender   =Gender::orderby('name','ASC')->get();
         $services =Service::orderby('name','ASC')->get();
         $hospitals =Hospital::orderby('name','ASC')->get();

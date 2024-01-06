@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
            $this->call(GenderSeeder::class);
+           $this->call(MaritalStatusSeeder::class);
+           $this->call(IdTypeSeeder::class);
 
       //\App\Models\User::factory(10)->create();
 

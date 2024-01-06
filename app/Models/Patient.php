@@ -23,8 +23,7 @@ class Patient extends Model
             $patient_id =$check_number->patient_id + 1;
         } else {
             $patient_id =1000;
-        }
-        
+
         $patient =Patient::create([
             'first_name'      =>ucwords($first_name),
             'middle_name'     =>ucwords($middle_name),
@@ -37,12 +36,16 @@ class Patient extends Model
             'region_id'       =>$region,
             'district_id'      =>$district,
             'ward_id'          =>$ward,
-            'phyical_address'  =>$location,
             'phone_number'     =>$phone_number,
             'patient_id'       =>$patient_id,
             'hospital_id'      =>$hospital_id,
             'created_by'       =>Auth::user()->id,
+            'physical_address'  =>$location,
         ]);
+
+
+
+    }
 
         return $patient->id;
     }
@@ -58,6 +61,7 @@ class Patient extends Model
         $patient->marital_status_id =$marital_status;
         $patient->id_type        =$id_type;
         $patient->id_number     =$id_number;
+        $patient->physical_address = $location;
         $patient->region_id     =$region;
         $patient->district_id   =$district;
         $patient->ward_id       =$ward;
