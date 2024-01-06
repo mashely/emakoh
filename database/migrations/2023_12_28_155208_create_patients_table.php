@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('gender_id');
             $table->unsignedBigInteger('id_type');
             $table->string('id_number');
+            $table->string('service');
             $table->unsignedBigInteger('region_id');
             $table->unsignedBigInteger('district_id');
             $table->unsignedBigInteger('ward_id');

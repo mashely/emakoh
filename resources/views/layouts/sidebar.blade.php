@@ -11,22 +11,22 @@
         <!-- Dark Logo-->
         <a href="#" class="logo logo-dark">
             <span class="logo-sm">
-                <i id="fp-logo">ED </i>
+                <i id="fp-logo">fplan-kidigital</i>
                 {{-- <img src="{{ asset('assets/images/logo-sm.png')}}" alt="" height="22"> --}}
             </span>
             <span class="logo-lg">
-                <i id="fp-logo">edigital </i>
+                <i id="fp-logo">fplan-kidigital </i>
                 {{-- <img src="{{ asset('assets/images/logo-dark.png')}}" alt="" height="17"> --}}
             </span>
         </a>
         <!-- Light Logo-->
         <a href="#" class="logo logo-light">
             <span class="logo-sm">
-                <i id="fp-logo">Ed  </i>
+                <i id="fp-logo">fplan-kidigital </i>
                 {{-- <img src="{{ asset('assets/images/logo-sm.png')}}" alt="" height="22"> --}}
             </span>
             <span class="logo-lg">
-                <i id="fp-logo">edigital </i>
+                <i id="fp-logo">fplan-kidigital  </i>
                 {{-- <img src="{{ asset('assets/images/logo-light.png')}}" alt="" height="17"> --}}
             </span>
         </a>

@@ -23,7 +23,7 @@
                                     <div class="position-relative h-100 d-flex flex-column">
                                         <div class="mb-4">
                                             <a href="#" class="d-block">
-                                                <i id="fp-logo">Fp kidijitali </i>
+                                                <i id="fp-logo">fplan-kidigital </i>
                                                 {{-- <img src="assets/images/logo-light.png" alt="" height="18"> --}}
                                             </a>
                                         </div>
@@ -64,7 +64,7 @@
                                 <div class="p-lg-5 p-4">
                                     <div>
                                         <h5 class="text-primary">Welcome Back</h5>
-                                        <p class="text-muted">Sign in to continue to Fp Kidijitali.</p>
+                                        <p class="text-muted">Sign in to continue to fplankidigital.</p>
                                     </div>
 
                                     <div class="mt-4">
