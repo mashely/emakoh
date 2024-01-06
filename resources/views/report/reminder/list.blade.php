@@ -54,7 +54,7 @@
                                         <select class="form-select" name="gender" >
                                             <option value="" selected>Please Choose Gender</option>
                                             @foreach ($gender as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -63,7 +63,7 @@
                                         <select class="form-select" name="marital_status" >
                                             <option value="" selected>Please Choose Marital Status</option>
                                             @foreach ($marital_status as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -72,7 +72,7 @@
                                         <select class="form-select" name="hospital_id">
                                             <option value="" selected>Please Choose Hospital</option>
                                             @foreach ($hospitals as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -81,7 +81,7 @@
                                         <select class="form-select" name="service" >
                                             <option value="" selected>Please Choose Service</option>
                                             @foreach ($services as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -98,7 +98,7 @@
                                         <select class="form-select" name="region" id="region_id" >
                                             <option value="" selected>Please Choose Region</option>
                                             @foreach ($regions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>  
+                                            <option value="{{ $item->reg_code }}">{{ $item->reg_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -115,14 +115,14 @@
                                         <button type="button" class="btn btn-primary" style="margin-right: 10px" id="filter_btn"> <i class="las la-search"></i> View Report</button>
                                         <button type="submit" class="btn btn-info"> <i class="las la-file-excel"></i> Generate Report</button>
                                     </div>
-                                  
+
                                 </div>
                             </form>
-                            
 
-                            
+
+
                             <div class="table-responsive table-card mt-3 mb-1" id="search_result">
-                               
+
                             </div>
                         </div>
                     </div><!-- end card -->
@@ -133,10 +133,10 @@
         </div>
         <!-- end row -->
 
-      
+
         <!-- end row -->
 
-      
+
         <!-- end row -->
 
     {{-- edit modal --}}
@@ -215,7 +215,7 @@
     $(document).ready(function(){
       $('#service_update').on('submit',function(e){
           e.preventDefault();
-      
+
        var dataz =$(this).serialize();
 
       $.ajaxSetup({
@@ -288,13 +288,13 @@
                   $('#filter_btn').html('<i class="las la-search"></i> View Report');
                   $('#filter_btn').attr('disabled', false);
                 }
-      
+
 
         });
     });
     });
 
-   
+
 </script>
-    
+
 @endpush

@@ -23,6 +23,7 @@ class Patient extends Model
             $patient_id =$check_number->patient_id + 1;
         } else {
             $patient_id =1000;
+        }
 
         $patient =Patient::create([
             'first_name'      =>ucwords($first_name),
@@ -44,10 +45,8 @@ class Patient extends Model
         ]);
 
 
-
-    }
-
         return $patient->id;
+
     }
 
     public function updateClient($first_name,$middle_name,$last_name,$dob,$marital_status,$id_type,$id_number,

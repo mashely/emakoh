@@ -18,12 +18,15 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->string('dob');
+            $table->string('service');
             $table->unsignedBigInteger('gender_id');
             $table->unsignedBigInteger('id_type');
             $table->string('id_number');
             $table->unsignedBigInteger('region_id');
             $table->unsignedBigInteger('district_id');
             $table->unsignedBigInteger('ward_id');
+            $table->unsignedBigInteger('marital_status_id');
             $table->string('physical_address');
             $table->string('phone_number');
             $table->string('patient_id');
@@ -38,6 +41,7 @@ return new class extends Migration
             $table->foreign('district_id')->references('id')->on('districts');
             $table->foreign('ward_id')->references('id')->on('wards');
             $table->foreign('hospital_id')->references('id')->on('hospitals');
+            $table->foreign('marital_status_id')->references('id')->on('marital_status');
         });
     }
 
