@@ -65,7 +65,7 @@
                                             <td>{{ $staff->user->gender->name}}</td>
                                             <td>{{ $staff->user->email}}</td>
                                             <td>{{ $staff->user->phone}}</td>
-                                            <td>{{ $staff->user->roles->userRole->description}}</td>
+                                            <td>{{ $staff->user->roles->userRole->name}}</td>
                                             <td>
                                                 @if ($staff->user->active == 1)
                                                 <span class="badge badge-soft-success text-uppercase">Active</span>
