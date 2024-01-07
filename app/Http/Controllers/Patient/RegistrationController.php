@@ -138,7 +138,7 @@ class RegistrationController extends Controller
 
         $patient_reg =new Patient();
         $patient_reg =$patient_reg->registration($first_name,$middle_name,$last_name,$dob,$marital_status,$id_type,$id_number,
-        $region,$district,$ward,$location,$phone_number,$gender,$hospital_id);
+        $region,$district,$ward,$location, $service,$phone_number,$gender,$hospital_id);
 
         $appointment =new ServiceAppointment();
         $appointment =$appointment->registration($patient_reg,$start_date,$end_date,$service,$hospital_id);

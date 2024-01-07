@@ -15,7 +15,7 @@ class Patient extends Model
     public $timestamps = true;
 
     public function registration($first_name,$middle_name,$last_name,$dob,$marital_status,$id_type,$id_number,
-    $region,$district,$ward,$location,$phone_number,$gender,$hospital_id){
+    $region,$district,$ward,$location, $service,$phone_number,$gender,$hospital_id){
 
         $check_number =Patient::orderby('id','desc')->first();
 
@@ -36,6 +36,7 @@ class Patient extends Model
             'id_number'       =>$id_number,
             'region_id'       =>$region,
             'district_id'      =>$district,
+            'service'          =>$service,
             'ward_id'          =>$ward,
             'phone_number'     =>$phone_number,
             'patient_id'       =>$patient_id,
