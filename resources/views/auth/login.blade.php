@@ -23,8 +23,9 @@
                                     <div class="position-relative h-100 d-flex flex-column">
                                         <div class="mb-4">
                                             <a href="#" class="d-block">
-                                                <i id="fp-logo">fplan-kidigital </i>
-                                                {{-- <img src="assets/images/logo-light.png" alt="" height="18"> --}}
+                                                <i id="fp-logo">fplan-kidigitals
+                                                </i>
+                                                <img src="assets/images/Emakoh Logo.png" alt="" width="350" height="200"> 
                                             </a>
                                         </div>
                                         <div class="mt-auto">
@@ -125,7 +126,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> Designed ,Developed and Maintained by Fp Kidijitali</p>
+                        <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> Designed ,Developed and Maintained by Fplan-Kidijitali</p>
                     </div>
                 </div>
             </div>
