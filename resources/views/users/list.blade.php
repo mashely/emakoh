@@ -111,8 +111,7 @@
        <!-- Modal -->
     <!--end modal -->
         <!-- end row -->
-
-        <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -175,7 +174,7 @@
                                 </div>
                                 <div class="d-flex align-items-start gap-3 mt-4">
                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
-nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address</button>
+                                  nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address</button>
                                 </div>
                             </div>
                             <!-- end tab pane -->
@@ -201,7 +200,7 @@ nexttab" data-nexttab="pills-info-desc-tab"><i class="ri-arrow-right-line label-
                                 <div class="d-flex align-items-start gap-3 mt-4">
                                     <button type="button" class="btn btn-link text-decoration-none btn-label previestab" data-previous="pills-gen-info-tab" ><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back to General</button>
                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
-nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Password</button>
+                                 nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Password</button>
                                 </div>
                             </div>
                             <!-- end tab pane -->
