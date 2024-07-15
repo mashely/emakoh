@@ -28,6 +28,10 @@ class RoleSeeder extends Seeder
             [
                 'id'=>3,
                 'name'=>'Nurse'
+            ],
+            [
+                'id'=>4,
+                'name'=>'SRH Health care Expert'
             ]
             ];
              // Insert users into the 'roles' table
