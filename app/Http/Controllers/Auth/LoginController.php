@@ -85,8 +85,6 @@ class LoginController extends Controller
                         'url'     =>$url,
                     ],200);
                 }
-                
-                
             } else {
                 Auth::logout();
                 return response()->json([
