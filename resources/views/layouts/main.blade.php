@@ -83,7 +83,9 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src=" {{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src=" {{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src=" {{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
@@ -100,7 +102,7 @@
 
     <!-- Vector map-->
     {{-- <script src=" {{ asset('assets/libs/jsvectormap/js/jsvectormap.min.js') }}"></script>
-    <script src=" {{ asset('assets/libs/jsvectormap/maps/world-merc.js') }}"></script> 
+    <script src=" {{ asset('assets/libs/jsvectormap/maps/world-merc.js') }}"></script>
 
     <!--Swiper slider js-->
     <script src=" {{ asset('assets/libs/swiper/swiper-bundle.min.js') }}"></script>
@@ -116,7 +118,7 @@
     {{-- e-chart --}}
      <!-- echarts js -->
      <script src="{{ asset('assets/libs/echarts/echarts.min.js')}}"></script>
-        
+
      <!-- echarts init -->
      <script src="{{ asset('assets/js/pages/echarts.init.js')}}"></script>
 
@@ -127,7 +129,7 @@
         $('#table_id').DataTable();
         } );
     </script>
-   
+
     @stack('scripts')
 
     <script>
@@ -145,11 +147,11 @@
     },
     function(){
       $.ajax({
-            url: "{{ route('disable.user')}}", 
+            url: "{{ route('disable.user')}}",
             method: "POST",
             data: {my_id:id,'_token':csrf_tokken},
             success: function(response)
-           {  
+           {
             $.notify(response.message,'success');
             setTimeout(function(){
              location.reload();
@@ -157,7 +159,7 @@
             },
             error: function(response){
                 console.log(response.responseText);
-                $.notify(response.responseJson.errors,'error');  
+                $.notify(response.responseJson.errors,'error');
             }
         });
     }
@@ -177,11 +179,11 @@
     },
     function(){
       $.ajax({
-            url: "{{ route('enable.user')}}", 
+            url: "{{ route('enable.user')}}",
             method: "POST",
             data: {my_id:id,'_token':csrf_tokken},
             success: function(response)
-           {  
+           {
             $.notify(response.message,'success');
             setTimeout(function(){
              location.reload();
@@ -189,14 +191,14 @@
             },
             error: function(response){
                 console.log(response.responseText);
-                $.notify(response.responseJson.errors,'error');  
+                $.notify(response.responseJson.errors,'error');
             }
         });
     }
     );
   }
     </script>
-   
+
 </body>
 
 
