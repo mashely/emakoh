@@ -49,7 +49,7 @@
                         <i class="bx bx-home"></i> <span data-key="t-landing">Home</span>
                     </a>
                 </li>
-                    
+
                 @endif
                 @if ((Auth::user()->hasRole(2) || Auth::user()->hasRole(3)))
                 <li class="nav-item">
@@ -64,14 +64,20 @@
                         <i class="bx bxs-user-detail"></i> <span data-key="t-landing">Clients</span>
                     </a>
                 </li>
+                <li class="menu-title"><span data-key="t-menu"></span>Pregenant Woman</li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('clients.list')}}">
+                        <i class="bx bxs-user-detail"></i> <span data-key="t-landing">PG</span>
+                    </a>
+                </li>
                 <li class="menu-title"><span data-key="t-menu">Reminders</span></li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('appointments.list')}}">
                         <i class="bx bx-list-ol"></i> <span data-key="t-landing">Reminders</span>
                         @if (todayReminders() > 0)
-                        <span class="badge badge-pill bg-danger" data-key="t-new">{{ todayReminders() }}</span>  
+                        <span class="badge badge-pill bg-danger" data-key="t-new">{{ todayReminders() }}</span>
                         @endif
-                       
+
                     </a>
                 </li>
                 @if (Auth::user()->hasRole(1))
@@ -86,7 +92,7 @@
                         <i class="bx bx-user"></i> <span data-key="t-landing">Users</span>
                     </a>
                 </li>
-                    
+
                 @endif
                 @if (Auth::user()->hasRole(1))
                 <li class="menu-title"><span data-key="t-menu">Reports</span></li>
@@ -120,10 +126,10 @@
                         </ul>
                     </div>
                 </li>
-                    
+
                 @endif
-                
-               
+
+
 
             </ul>
         </div>
