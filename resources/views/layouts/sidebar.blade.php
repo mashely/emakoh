@@ -64,10 +64,10 @@
                         <i class="bx bxs-user-detail"></i> <span data-key="t-landing">Clients</span>
                     </a>
                 </li>
-                <li class="menu-title"><span data-key="t-menu"></span>Pregenant Woman</li>
+                <li class="menu-title"><span data-key="t-menu"></span>Pregnant Woman</li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('clients.list')}}">
-                        <i class="bx bxs-user-detail"></i> <span data-key="t-landing">PG</span>
+                        <i class="bx bxs-user-detail"></i> <span data-key="t-landing">Pregnant Woman</span>
                     </a>
                 </li>
                 <li class="menu-title"><span data-key="t-menu">Reminders</span></li>
