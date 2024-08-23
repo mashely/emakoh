@@ -70,6 +70,11 @@
                         <i class="bx bxs-user-detail"></i> <span data-key="t-landing">Pregnant Woman</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('clients.list')}}">
+                        <i class="bx bxs-user-detail"></i> <span data-key="t-landing">Taarifa za Uzazi</span>
+                    </a>
+                </li>
                 <li class="menu-title"><span data-key="t-menu">Reminders</span></li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('appointments.list')}}">
