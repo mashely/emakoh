@@ -18,7 +18,8 @@ class UserController extends Controller
 
     public function list(){
         $gender   =Gender::orderby('name','DESC')->whereNot('id',3)->get();
-        $roles    =Role::orderby('name','ASC')->whereNotIn('id',[2,3])->get();
+        $roles    =Role::orderby('name','ASC')->get();
+        // $roles    =Role::orderby('name','ASC')->whereNotIn('id',[2,3])->get();
         $users =User::orderby('created_at','DESC')->get();
         return view('users.list',compact('users','gender','roles'));
     }
