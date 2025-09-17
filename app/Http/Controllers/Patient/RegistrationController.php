@@ -136,6 +136,26 @@ class RegistrationController extends Controller
             }
         }
 
+$region = $request->input('region');
+if (!Region::find($region)) {
+    // fallback to default region ID = 1
+    $region = 1;
+}
+
+$district = $request->input('district');
+if (!District::find($district)) {
+    // fallback to default region ID = 1
+    $district = 1;
+}
+
+
+$ward = $request->input('ward');
+if (!Ward::find($ward)) {
+    // fallback to default region ID = 1
+    $ward = 1;
+}
+
+
         $patient_reg =new Patient();
         $patient_reg =$patient_reg->registration($first_name,$middle_name,$last_name,$dob,$marital_status,$id_type,$id_number,
         $region,$district,$ward,$location, $service,$phone_number,$gender,$hospital_id);
