@@ -32,7 +32,7 @@
                         <div id="customerList">
                             <div class="row g-4 mb-3 ">
                                 <div class="col-sm-auto text-right">
-                                    @if (Auth::user()->hasRole(2) || Auth::user()->hasRole(3))
+                                    @if (Auth::user()->hasRole(1) || Auth::user()->hasRole(2) || Auth::user()->hasRole(3))
                                     <div>
                                         <a href="{{ route('client.form')}}">
                                             <button type="button" class="btn btn-success add-btn" >

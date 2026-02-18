@@ -26,10 +26,11 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0 text-center">Client Registration</h4>
+                        <h4 class="card-title mb-0 text-center">Pregnancy Registration</h4>
                     </div><!-- end card header -->
                     <div class="card-body form-steps">
                         <form class="vertical-navs-step" id="patient_reg">
+                            <input type="hidden" name="is_pregnancy_registration" value="1">
                             <div class="row gy-5">
                                 <div class="col-lg-3">
                                     <div class="nav flex-column custom-nav nav-pills" role="tablist" aria-orientation="vertical">
@@ -38,21 +39,21 @@
                                                 <i class="ri-close-circle-fill step-icon me-2"></i>
                                                 Step 1
                                             </span>
-                                            Basic Information
+                                            Personal Information
                                         </button>
                                         <button class="nav-link" id="v-pills-bill-address-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bill-address" type="button" role="tab" aria-controls="v-pills-bill-address" aria-selected="false">
                                             <span class="step-title me-2">
                                                 <i class="ri-close-circle-fill step-icon me-2"></i>
                                                 Step 2
                                             </span>
-                                            Address
+                                            Address & Contacts
                                         </button>
                                         <button class="nav-link" id="v-pills-payment-tab" data-bs-toggle="pill" data-bs-target="#v-pills-payment" type="button" role="tab" aria-controls="v-pills-payment" aria-selected="false">
                                             <span class="step-title me-2">
                                                 <i class="ri-close-circle-fill step-icon me-2"></i>
                                                 Step 3
                                             </span>
-                                            Service
+                                            Pregnancy & Visit
                                         </button>
                                     </div>
                                     <!-- end nav -->
@@ -62,7 +63,7 @@
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="v-pills-bill-info" role="tabpanel" aria-labelledby="v-pills-bill-info-tab">
                                                 <div>
-                                                    <h5 class="text-center">Client Basic Information</h5>
+                                                    <h5 class="text-center">Personal Identification Details</h5>
                                                 </div>
                                                 <hr>
                                                 <div>
@@ -134,13 +135,13 @@
 
                                                 <div class="d-flex align-items-start gap-3 mt-4">
                                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
-nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address</button>
+nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address & Contacts</button>
                                                 </div>
                                             </div>
                                             <!-- end tab pane -->
                                             <div class="tab-pane fade " id="v-pills-bill-address" role="tabpanel" aria-labelledby="v-pills-bill-address-tab">
                                                 <div>
-                                                    <h5 class="text-center">Client Address</h5>
+                                                    <h5 class="text-center">Address & Contacts</h5>
                                                 </div>
                                                 <hr>
                                                 <div>
@@ -183,13 +184,27 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                             <label for="Location">Phone Number <i id="required-field"> * </i></label>
                                                             <input type="number" class="form-control" placeholder="Enter Phone Number" name="phone_number">
                                                         </div>
+                                                        <div class="col-md-6">
+                                                            <label for="Location">Alternative Phone Number</label>
+                                                            <input type="number" class="form-control" placeholder="Enter Alternative Phone Number" name="alt_phone_number">
+                                                        </div>
+                                                    </div>
 
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-6">
+                                                            <label for="Location">Emergency Contact Person</label>
+                                                            <input type="text" class="form-control" placeholder="Enter Emergency Contact Person" name="emergency_contact_name">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="Location">Emergency Contact Phone</label>
+                                                            <input type="number" class="form-control" placeholder="Enter Emergency Contact Phone" name="emergency_contact_phone">
+                                                        </div>
                                                     </div>
                                                     <P style="margin-top: 15px;"><b>NOTE: Those field marked with <span id="required-field">*</span> are mandatory field</b></P>
 
                                                 </div>
                                                 <div class="d-flex align-items-start gap-3 mt-4">
-                                                    <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back to Address</button>
+                                                    <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back to Personal Info</button>
                                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
 nexttab" data-nexttab="v-pills-payment-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Service</button>
                                                 </div>
@@ -197,10 +212,421 @@ nexttab" data-nexttab="v-pills-payment-tab"><i class="ri-arrow-right-line label-
                                             <!-- end tab pane -->
                                             <div class="tab-pane fade" id="v-pills-payment" role="tabpanel" aria-labelledby="v-pills-payment-tab">
                                                 <div>
-                                                    <h5 class="text-center">Type of Service</h5>
+                                                    <h5 class="text-center">Pregnancy & Obstetric History</h5>
                                                 </div>
 
                                                 <div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Gravida</label>
+                                                            <input type="number" class="form-control" name="gravida" min="0">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Para</label>
+                                                            <input type="number" class="form-control" name="para" min="0">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Number of Living Children</label>
+                                                            <input type="number" class="form-control" name="living_children" min="0">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Miscarriages / Abortions</label>
+                                                            <input type="number" class="form-control" name="miscarriages" min="0">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Stillbirths</label>
+                                                            <input type="number" class="form-control" name="stillbirths" min="0">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Cesarean Sections</label>
+                                                            <input type="number" class="form-control" name="cesarean_sections" min="0">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Preterm Births</label>
+                                                            <input type="number" class="form-control" name="preterm_births" min="0">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Last Menstrual Period (LMP)</label>
+                                                            <input type="date" class="form-control" name="lmp" max="{{ date('Y-m-d')}}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Estimated Due Date (EDD)</label>
+                                                            <input type="date" class="form-control" name="edd">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Gestational Age (weeks)</label>
+                                                            <input type="number" class="form-control" name="gestational_age_weeks" min="0">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Pregnancy Type</label>
+                                                            <select name="pregnancy_planned" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="Planned">Planned</option>
+                                                                <option value="Unplanned">Unplanned</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Current Pregnancy Information</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Date of First ANC Visit</label>
+                                                            <input type="date" class="form-control" name="first_anc_visit_date">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Pregnancy Confirmation Method</label>
+                                                            <input type="text" class="form-control" name="pregnancy_confirmation_method" placeholder="e.g. Urine test, Ultrasound">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Pregnancy Number</label>
+                                                            <input type="number" class="form-control" name="pregnancy_number" min="1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Fetal Movements</label>
+                                                            <select name="fetal_movements" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">If Yes, When Started</label>
+                                                            <input type="date" class="form-control" name="fetal_movements_started_at">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Multiple Pregnancy</label>
+                                                            <input type="text" class="form-control" name="multiple_pregnancy_type" placeholder="Single, Twins, etc.">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-12">
+                                                            <label class="form-label">Danger Signs Reported</label>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="danger_signs[]" value="Bleeding" id="danger_bleeding">
+                                                                        <label class="form-check-label" for="danger_bleeding">
+                                                                            Bleeding
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="danger_signs[]" value="Severe pain" id="danger_pain">
+                                                                        <label class="form-check-label" for="danger_pain">
+                                                                            Severe pain
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="danger_signs[]" value="Severe vomiting" id="danger_vomiting">
+                                                                        <label class="form-check-label" for="danger_vomiting">
+                                                                            Severe vomiting
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="danger_signs[]" value="Swelling" id="danger_swelling">
+                                                                        <label class="form-check-label" for="danger_swelling">
+                                                                            Swelling
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="danger_signs[]" value="Headache/blurred vision" id="danger_headache">
+                                                                        <label class="form-check-label" for="danger_headache">
+                                                                            Headache / blurred vision
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="danger_signs[]" value="Others" id="danger_other">
+                                                                        <label class="form-check-label" for="danger_other">
+                                                                            Others
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Medical History</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label d-block">Chronic Illnesses</label>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="chronic_illnesses[]" value="Hypertension" id="illness_hypertension">
+                                                                        <label class="form-check-label" for="illness_hypertension">Hypertension</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="chronic_illnesses[]" value="Diabetes" id="illness_diabetes">
+                                                                        <label class="form-check-label" for="illness_diabetes">Diabetes</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="chronic_illnesses[]" value="Asthma" id="illness_asthma">
+                                                                        <label class="form-check-label" for="illness_asthma">Asthma</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="chronic_illnesses[]" value="Heart disease" id="illness_heart">
+                                                                        <label class="form-check-label" for="illness_heart">Heart disease</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="chronic_illnesses[]" value="Epilepsy" id="illness_epilepsy">
+                                                                        <label class="form-check-label" for="illness_epilepsy">Epilepsy</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label d-block">Previous Pregnancy Complications</label>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="previous_pregnancy_complications[]" value="Preeclampsia" id="comp_preeclampsia">
+                                                                        <label class="form-check-label" for="comp_preeclampsia">Preeclampsia</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="previous_pregnancy_complications[]" value="Eclampsia" id="comp_eclampsia">
+                                                                        <label class="form-check-label" for="comp_eclampsia">Eclampsia</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="previous_pregnancy_complications[]" value="Gestational diabetes" id="comp_gdm">
+                                                                        <label class="form-check-label" for="comp_gdm">Gestational diabetes</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Blood Transfusion History</label>
+                                                            <select name="blood_transfusion_history" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Surgical History</label>
+                                                            <input type="text" class="form-control" name="surgical_history" placeholder="Describe previous surgeries">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Allergies (drugs, foods)</label>
+                                                            <input type="text" class="form-control" name="allergies" placeholder="List known allergies">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Physical & Clinical Measurements (Baseline)</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Height (cm)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="height_cm">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Weight (kg)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="weight_kg">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">BMI</label>
+                                                            <input type="number" step="0.1" class="form-control" name="bmi">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Blood Pressure</label>
+                                                            <input type="text" class="form-control" name="blood_pressure" placeholder="e.g. 120/80">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Temperature (°C)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="temperature_c">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Pulse Rate (beats/min)</label>
+                                                            <input type="number" class="form-control" name="pulse_rate">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">MUAC (cm)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="muac_cm">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Laboratory & Screening Information</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Blood Group</label>
+                                                            <input type="text" class="form-control" name="blood_group" placeholder="e.g. A, B, O, AB">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Rhesus Factor</label>
+                                                            <input type="text" class="form-control" name="rhesus_factor" placeholder="e.g. + or -">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Hemoglobin (g/dL)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="hemoglobin_level">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">HIV Status</label>
+                                                            <input type="text" class="form-control" name="hiv_status">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Syphilis (VDRL/RPR)</label>
+                                                            <input type="text" class="form-control" name="syphilis_result">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Hepatitis B</label>
+                                                            <input type="text" class="form-control" name="hepatitis_b_result">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Urinalysis (Protein)</label>
+                                                            <input type="text" class="form-control" name="urinalysis_protein">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Urinalysis (Sugar)</label>
+                                                            <input type="text" class="form-control" name="urinalysis_sugar">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Blood Sugar</label>
+                                                            <input type="number" step="0.1" class="form-control" name="blood_sugar">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Malaria Test</label>
+                                                            <input type="text" class="form-control" name="malaria_test_result">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Medications & Supplements</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Iron & Folic Acid Started</label>
+                                                            <select name="iron_folic_started" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Deworming Status</label>
+                                                            <input type="text" class="form-control" name="deworming_status">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Tetanus Toxoid (TT) Doses</label>
+                                                            <input type="number" class="form-control" name="tetanus_toxoid_doses" min="0">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-12">
+                                                            <label class="form-label">Any Current Medications</label>
+                                                            <textarea class="form-control" name="current_medications" rows="2"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Social & Lifestyle Information</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Occupation</label>
+                                                            <input type="text" class="form-control" name="occupation">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Education Level</label>
+                                                            <input type="text" class="form-control" name="education_level">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Smoking Status</label>
+                                                            <select name="smoking_status" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="Never">Never</option>
+                                                                <option value="Former">Former</option>
+                                                                <option value="Current">Current</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Alcohol Use</label>
+                                                            <select name="alcohol_use" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="Never">Never</option>
+                                                                <option value="Occasional">Occasional</option>
+                                                                <option value="Regular">Regular</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Exposure to Domestic Violence</label>
+                                                            <select name="domestic_violence_exposure" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                                <option value="Not disclosed">Not disclosed</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Nutritional Status / Food Security</label>
+                                                            <input type="text" class="form-control" name="nutritional_status" placeholder="e.g. Adequate, Moderate, Poor">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Next Visit Reminder</h5>
+                                                    </div>
 
                                                     <div class="row gy-3">
                                                         <div class="col-md-12">
@@ -229,7 +655,7 @@ nexttab" data-nexttab="v-pills-payment-tab"><i class="ri-arrow-right-line label-
                                                 </div>
 
                                                 <div class="d-flex align-items-start gap-3 mt-4">
-                                                    <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-address-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back to Address Info</button>
+                                                    <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-address-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back to Address & Contacts</button>
                                                     <button type="button" id="patient_btn" class="btn btn-success btn-label right ms-auto nexttab
 nexttab" ><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i> Submit</button>
                                                 </div>
