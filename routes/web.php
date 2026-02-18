@@ -50,6 +50,7 @@ Route::post('user/enable','Management\UserController@enable_user')->name('enable
 Route::get('users/list','Management\UserController@list')->name('users.list');
 Route::get('settings','Management\SettingController@index')->name('settings.index');
 Route::post('settings/save','Management\SettingController@save')->name('settings.save');
+Route::get('profile','Management\UserController@profile')->name('profile.index');
 Route::get('reminders/{id}/list','Patient\AppointmentController@reminders')->name('hospital.reminders');
 Route::post('client/search','Patient\RegistrationController@search_client')->name('client.search');
 Route::get('client/{id}/edit','Patient\RegistrationController@edit')->name('client.edit');

@@ -147,4 +147,10 @@ class UserController extends Controller
             ],500);
         }
     }
+
+    public function profile(){
+        $user =Auth::user();
+        $gender =Gender::orderby('name','ASC')->whereNot('id',3)->get();
+        return view('users.profile',compact('user','gender'));
+    }
 }
