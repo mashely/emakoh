@@ -14,6 +14,7 @@ use App\Models\Region;
 use App\Models\District;
 use App\Models\Ward;
 use Illuminate\Support\Facades\DB;
+use PDF;
 use Auth;
 
 
@@ -45,13 +46,19 @@ class RegistrationController extends Controller
      }
 
     public function edit($id){
-        $client =Patient::where('id',$id)->first();
+        $client =Patient::with(['gender','marital','idType','region','district','ward'])->findOrFail($id);
         $gender   =Gender::orderby('name','ASC')->whereNot('id',3)->get();
         $idtype   =IdType::get();
         $services =Service::orderby('name','ASC')->get();
         $regions  =Region::orderby('reg_name','ASC')->get();
         $marital_status =MaritalStatus::orderby('name','ASC')->whereNot('id',4)->get();
-        return view('patients.edit',compact('client','gender','idtype','services','marital_status','regions'));
+
+        $pregnancy =DB::table('pregnant_women')
+            ->where('patient_id',$id)
+            ->orderBy('created_at','DESC')
+            ->first();
+
+        return view('pregnant_woman.edit',compact('client','gender','idtype','services','marital_status','regions','pregnancy'));
     }
 
     public function district($region_id){
@@ -131,50 +138,52 @@ class RegistrationController extends Controller
             }
         }
 
+        $existingPatient =null;
         if ($id_number) {
-            $check_patient =Patient::where('id_number',$id_number)->first();
-            if ($check_patient) {
-                return response()->json([
-                    'success' =>false,
-                    'errors'  =>'The Client Already Exist in our system'
-                ],500);
-            }
+            $existingPatient =Patient::where('id_number',$id_number)->first();
         }
 
-$region = $request->input('region');
-if (!Region::find($region)) {
-    // fallback to default region ID = 1
-    $region = 1;
-}
+        $region = $request->input('region');
+        if (!Region::find($region)) {
+            $region = 1;
+        }
 
-$district = $request->input('district');
-if (!District::find($district)) {
-    // fallback to default region ID = 1
-    $district = 1;
-}
+        $district = $request->input('district');
+        if (!District::find($district)) {
+            $district = 1;
+        }
 
+        $ward = $request->input('ward');
+        if (!Ward::find($ward)) {
+            $ward = 1;
+        }
 
-$ward = $request->input('ward');
-if (!Ward::find($ward)) {
-    // fallback to default region ID = 1
-    $ward = 1;
-}
+        $patient_reg =null;
+        $usedExisting =false;
 
-
-        $patient_reg =new Patient();
-        $patient_reg =$patient_reg->registration($first_name,$middle_name,$last_name,$dob,$marital_status,$id_type,$id_number,
-        $region,$district,$ward,$location, $service,$phone_number,$gender,$hospital_id);
+        if ($existingPatient) {
+            $patient_reg =$existingPatient->id;
+            $usedExisting =true;
+        } else {
+            $patientModel =new Patient();
+            $patient_reg  =$patientModel->registration($first_name,$middle_name,$last_name,$dob,$marital_status,$id_type,$id_number,
+                $region,$district,$ward,$location, $service,$phone_number,$gender,$hospital_id);
+        }
 
         $appointment =new ServiceAppointment();
         $appointment =$appointment->registration($patient_reg,$start_date,$end_date,$service,$hospital_id);
 
         if ($appointment) {
-            if ($request->input('is_pregnancy_registration')) {
+            $isPregnancy = (bool) $request->input('is_pregnancy_registration');
+            if ($isPregnancy) {
                 $this->storePregnancyDetails($request,$patient_reg);
             }
             return response()->json([
-                'success' =>true,
-                'message' =>'Client Registration done Successfully'
+                'success'        =>true,
+                'message'        =>$usedExisting ? 'Pregnancy registration added for existing client' : 'Client Registration done Successfully',
+                'patient_id'     =>$patient_reg,
+                'is_pregnancy'   =>$isPregnancy,
+                'existing_client'=>$usedExisting,
             ],200);
         } else {
             return response()->json([
@@ -261,6 +270,24 @@ if (!Ward::find($ward)) {
         ]);
     }
 
+    public function pregnancyPdf($id){
+        $patient =Patient::with(['gender','marital','idType','region','district','ward','hospital'])->findOrFail($id);
+
+        $pregnancy =DB::table('pregnant_women')
+            ->where('patient_id',$id)
+            ->orderBy('created_at','DESC')
+            ->first();
+
+        $pdf =PDF::loadView('pregnant_woman.pdf',[
+            'patient' =>$patient,
+            'pregnancy' =>$pregnancy,
+        ]);
+
+        $fileName ='pregnancy_registration_'.$patient->patient_id.'.pdf';
+
+        return $pdf->stream($fileName);
+    }
+
 
 
     public function update(Request $request){
@@ -275,7 +302,6 @@ if (!Ward::find($ward)) {
             'phone_number'   =>'required',
         ]);
 
-        $id_number      =$request->input('id_number');
         $first_name     =$request->input('first_name');
         $middle_name    =$request->input('middle_name');
         $last_name      =$request->input('last_name');
@@ -290,11 +316,101 @@ if (!Ward::find($ward)) {
         $location       =$request->input('location');
         $phone_number   =$request->input('phone_number');
         $client_id      =$request->input('client_id');
+        $isPregnancy    =(bool) $request->input('is_pregnancy_registration',false);
 
         $patient_reg =new Patient();
         $patient_reg =$patient_reg->updateClient($first_name,$middle_name,$last_name,$dob,$marital_status,$id_type,$id_number,
         $region,$district,$ward,$location,$phone_number,$gender,$client_id);
 
+
+        if ($patient_reg && $isPregnancy) {
+            $dangerSigns =$request->input('danger_signs');
+            if (is_array($dangerSigns)) {
+                $dangerSigns =implode(',',$dangerSigns);
+            }
+
+            $chronicIllnesses =$request->input('chronic_illnesses');
+            if (is_array($chronicIllnesses)) {
+                $chronicIllnesses =implode(',',$chronicIllnesses);
+            }
+
+            $previousComplications =$request->input('previous_pregnancy_complications');
+            if (is_array($previousComplications)) {
+                $previousComplications =implode(',',$previousComplications);
+            }
+
+            $pregnancyData =[
+                'gravida'                    =>$request->input('gravida'),
+                'para'                       =>$request->input('para'),
+                'living_children'            =>$request->input('living_children'),
+                'miscarriages'               =>$request->input('miscarriages'),
+                'stillbirths'                =>$request->input('stillbirths'),
+                'cesarean_sections'          =>$request->input('cesarean_sections'),
+                'preterm_births'             =>$request->input('preterm_births'),
+                'lmp'                        =>$request->input('lmp'),
+                'edd'                        =>$request->input('edd'),
+                'gestational_age_weeks'      =>$request->input('gestational_age_weeks'),
+                'pregnancy_planned'          =>$request->input('pregnancy_planned'),
+                'first_anc_visit_date'       =>$request->input('first_anc_visit_date'),
+                'pregnancy_confirmation_method' =>$request->input('pregnancy_confirmation_method'),
+                'pregnancy_number'           =>$request->input('pregnancy_number'),
+                'fetal_movements'            =>$request->input('fetal_movements'),
+                'fetal_movements_started_at' =>$request->input('fetal_movements_started_at'),
+                'multiple_pregnancy_type'    =>$request->input('multiple_pregnancy_type'),
+                'danger_signs'               =>$dangerSigns,
+                'alt_phone_number'           =>$request->input('alt_phone_number'),
+                'emergency_contact_name'     =>$request->input('emergency_contact_name'),
+                'emergency_contact_phone'    =>$request->input('emergency_contact_phone'),
+                'chronic_illnesses'          =>$chronicIllnesses,
+                'previous_pregnancy_complications' =>$previousComplications,
+                'blood_transfusion_history'  =>$request->input('blood_transfusion_history'),
+                'surgical_history'           =>$request->input('surgical_history'),
+                'allergies'                  =>$request->input('allergies'),
+                'height_cm'                  =>$request->input('height_cm'),
+                'weight_kg'                  =>$request->input('weight_kg'),
+                'bmi'                        =>$request->input('bmi'),
+                'blood_pressure'             =>$request->input('blood_pressure'),
+                'temperature_c'              =>$request->input('temperature_c'),
+                'pulse_rate'                 =>$request->input('pulse_rate'),
+                'muac_cm'                    =>$request->input('muac_cm'),
+                'blood_group'                =>$request->input('blood_group'),
+                'rhesus_factor'              =>$request->input('rhesus_factor'),
+                'hemoglobin_level'           =>$request->input('hemoglobin_level'),
+                'hiv_status'                 =>$request->input('hiv_status'),
+                'syphilis_result'            =>$request->input('syphilis_result'),
+                'hepatitis_b_result'         =>$request->input('hepatitis_b_result'),
+                'urinalysis_protein'         =>$request->input('urinalysis_protein'),
+                'urinalysis_sugar'           =>$request->input('urinalysis_sugar'),
+                'blood_sugar'                =>$request->input('blood_sugar'),
+                'malaria_test_result'        =>$request->input('malaria_test_result'),
+                'iron_folic_started'         =>$request->input('iron_folic_started'),
+                'deworming_status'           =>$request->input('deworming_status'),
+                'tetanus_toxoid_doses'       =>$request->input('tetanus_toxoid_doses'),
+                'current_medications'        =>$request->input('current_medications'),
+                'occupation'                 =>$request->input('occupation'),
+                'education_level'            =>$request->input('education_level'),
+                'smoking_status'             =>$request->input('smoking_status'),
+                'alcohol_use'                =>$request->input('alcohol_use'),
+                'domestic_violence_exposure' =>$request->input('domestic_violence_exposure'),
+                'nutritional_status'         =>$request->input('nutritional_status'),
+                'updated_at'                 =>now(),
+            ];
+
+            $existingPregnancy =DB::table('pregnant_women')
+                ->where('patient_id',$client_id)
+                ->orderBy('created_at','DESC')
+                ->first();
+
+            if ($existingPregnancy) {
+                DB::table('pregnant_women')
+                    ->where('id',$existingPregnancy->id)
+                    ->update($pregnancyData);
+            } else {
+                $pregnancyData['patient_id'] =$client_id;
+                $pregnancyData['created_at'] =now();
+                DB::table('pregnant_women')->insert($pregnancyData);
+            }
+        }
 
         if ($patient_reg) {
             return response()->json([

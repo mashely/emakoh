@@ -33,6 +33,7 @@ Route::get('hospital/dashboard','Dashboard\HospitalController@index')->name('hos
 Route::get('clients','Patient\RegistrationController@index')->name('clients.list');
 Route::get('client/registration','Patient\RegistrationController@patient_form')->name('client.form');
 Route::post('client/create','Patient\RegistrationController@create')->name('client.create');
+Route::get('pregnancy/{id}/pdf','Patient\RegistrationController@pregnancyPdf')->name('pregnancy.pdf');
 Route::get('client/{id}/reminders','Patient\AppointmentController@index')->name('client.reminders');
 Route::post('appointment/create','Patient\AppointmentController@create')->name('appointment.create');
 Route::get('get_district/{id}','Patient\RegistrationController@district');
@@ -71,6 +72,5 @@ Route::post('user/generate/report','Report\UserController@generate_report')->nam
 Route::get('reminders/report','Report\ReminderController@index')->name('reminders.report');
 Route::post('reminder/filter','Report\ReminderController@filter_reminders')->name('reminder.filter');
 Route::post('reminder/generate/report','Report\ReminderController@generate_report')->name('reminder.get.report');
-
 
 

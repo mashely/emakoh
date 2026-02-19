@@ -30,6 +30,7 @@
                     </div><!-- end card header -->
                     <div class="card-body form-steps">
                         <form class="vertical-navs-step" id="patient_reg">
+                            <input type="hidden" name="is_pregnancy_registration" value="1">
                             <div class="row gy-5">
                                 <div class="col-lg-3">
                                     <div class="nav flex-column custom-nav nav-pills" role="tablist" aria-orientation="vertical">
@@ -47,13 +48,13 @@
                                             </span>
                                             {{ __('app.address') }}
                                         </button>
-                                        {{-- <button class="nav-link" id="v-pills-payment-tab" data-bs-toggle="pill" data-bs-target="#v-pills-payment" type="button" role="tab" aria-controls="v-pills-payment" aria-selected="false">
+                                        <button class="nav-link" id="v-pills-payment-tab" data-bs-toggle="pill" data-bs-target="#v-pills-payment" type="button" role="tab" aria-controls="v-pills-payment" aria-selected="false">
                                             <span class="step-title me-2">
                                                 <i class="ri-close-circle-fill step-icon me-2"></i>
-                                                Step 3
+                                                {{ __('app.step3_pregnancy_visit') }}
                                             </span>
-                                            Service
-                                        </button> --}}
+                                            {{ __('app.pregnancy_visit') }}
+                                        </button>
                                     </div>
                                     <!-- end nav -->
                                 </div> <!-- end col-->
@@ -175,7 +176,6 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                             <label for="Location">{{ __('app.physical_location') }}</label>
                                                             <textarea name="location" rows="7" class="form-control">{{ $client->physical_address }}</textarea>
                                                         </div>
-
                                                     </div>
 
                                                     <hr class="my-4 text-muted">
@@ -184,7 +184,20 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                             <label for="Location">{{ __('app.phone_number') }}</label>
                                                             <input type="number" class="form-control" value="{{ $client->phone_number }}" name="phone_number">
                                                         </div>
-
+                                                        <div class="col-md-6">
+                                                            <label for="Location">{{ __('app.alternative_phone_number') }}</label>
+                                                            <input type="number" class="form-control" name="alt_phone_number" value="{{ isset($pregnancy) ? $pregnancy->alt_phone_number : '' }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-6">
+                                                            <label for="Location">{{ __('app.emergency_contact_person') }}</label>
+                                                            <input type="text" class="form-control" name="emergency_contact_name" value="{{ isset($pregnancy) ? $pregnancy->emergency_contact_name : '' }}">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="Location">{{ __('app.emergency_contact_phone') }}</label>
+                                                            <input type="number" class="form-control" name="emergency_contact_phone" value="{{ isset($pregnancy) ? $pregnancy->emergency_contact_phone : '' }}">
+                                                        </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12" id="patient_alert"></div>
@@ -193,48 +206,342 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                 </div>
                                                 <div class="d-flex align-items-start gap-3 mt-4">
                                                     <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> {{ __('app.back_to_address_info') }}</button>
-                                                    <button type="button" id="patient_btn" class="btn btn-success btn-label right ms-auto nexttab
-nexttab" ><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i> Update</button>
+                                                    <button type="button" class="btn btn-success btn-label right ms-auto nexttab nexttab" data-nexttab="v-pills-payment-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i> {{ __('app.go_to_pregnancy_section') }}</button>
                                                 </div>
                                             </div>
                                             <!-- end tab pane -->
-                                            {{-- <div class="tab-pane fade" id="v-pills-payment" role="tabpanel" aria-labelledby="v-pills-payment-tab">
+                                            <div class="tab-pane fade" id="v-pills-payment" role="tabpanel" aria-labelledby="v-pills-payment-tab">
                                                 <div>
-                                                    <h5 class="text-center">Type of Service</h5>
+                                                    <h5 class="text-center">{{ __('app.pregnancy_obstetric_history') }}</h5>
                                                 </div>
 
                                                 <div>
-
                                                     <div class="row gy-3">
-                                                        <div class="col-md-12">
-                                                            <label for="cc-number" class="form-label">Type of service</label>
-                                                            <select name="service" class="form-select" id="">
-                                                                <option value="" selected>Please Select Type Of Service</option>
-                                                                @foreach ($services as $item)
-                                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                                @endforeach
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">{{ __('app.gravida') }}</label>
+                                                            <input type="number" class="form-control" name="gravida" min="0" value="{{ isset($pregnancy) ? $pregnancy->gravida : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">{{ __('app.para_label') }}</label>
+                                                            <input type="number" class="form-control" name="para" min="0" value="{{ isset($pregnancy) ? $pregnancy->para : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">{{ __('app.number_of_living_children') }}</label>
+                                                            <input type="number" class="form-control" name="living_children" min="0" value="{{ isset($pregnancy) ? $pregnancy->living_children : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{ __('app.miscarriages_abortions') }}</label>
+                                                            <input type="number" class="form-control" name="miscarriages" min="0" value="{{ isset($pregnancy) ? $pregnancy->miscarriages : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{ __('app.stillbirths') }}</label>
+                                                            <input type="number" class="form-control" name="stillbirths" min="0" value="{{ isset($pregnancy) ? $pregnancy->stillbirths : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{ __('app.cesarean_sections') }}</label>
+                                                            <input type="number" class="form-control" name="cesarean_sections" min="0" value="{{ isset($pregnancy) ? $pregnancy->cesarean_sections : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{ __('app.preterm_births') }}</label>
+                                                            <input type="number" class="form-control" name="preterm_births" min="0" value="{{ isset($pregnancy) ? $pregnancy->preterm_births : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Last Menstrual Period (LMP)</label>
+                                                            <input type="date" class="form-control" name="lmp" max="{{ date('Y-m-d')}}" value="{{ isset($pregnancy) ? $pregnancy->lmp : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Estimated Due Date (EDD)</label>
+                                                            <input type="date" class="form-control" name="edd" value="{{ isset($pregnancy) ? $pregnancy->edd : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Gestational Age (weeks)</label>
+                                                            <input type="number" class="form-control" name="gestational_age_weeks" min="0" value="{{ isset($pregnancy) ? $pregnancy->gestational_age_weeks : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Pregnancy Type</label>
+                                                            <select name="pregnancy_planned" class="form-select">
+                                                                <option value="">{{ __('app.please_choose_option') }}</option>
+                                                                <option value="Planned" {{ isset($pregnancy) && $pregnancy->pregnancy_planned === 'Planned' ? 'selected' : '' }}>Planned</option>
+                                                                <option value="Unplanned" {{ isset($pregnancy) && $pregnancy->pregnancy_planned === 'Unplanned' ? 'selected' : '' }}>Unplanned</option>
                                                             </select>
                                                         </div>
+                                                    </div>
 
-                                                        <div class="col-md-6">
-                                                            <label for="cc-expiration" class="form-label">Start Date</label>
-                                                            <input type="date" class="form-control" name="start_date" min="{{ date('Y-m-d')}}" required>
-                                                        </div>
+                                                    <hr class="my-4 text-muted">
 
-                                                        <div class="col-md-6">
-                                                            <label for="cc-cvv" class="form-label">End Date</label>
-                                                            <input type="date" class="form-control" name="end_date" min="{{ date('Y-m-d')}}" required>
+                                                    <div>
+                                                        <h5 class="text-center">Current Pregnancy Information</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Date of First ANC Visit</label>
+                                                            <input type="date" class="form-control" name="first_anc_visit_date" value="{{ isset($pregnancy) ? $pregnancy->first_anc_visit_date : '' }}">
                                                         </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Pregnancy Confirmation Method</label>
+                                                            <input type="text" class="form-control" name="pregnancy_confirmation_method" value="{{ isset($pregnancy) ? $pregnancy->pregnancy_confirmation_method : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Pregnancy Number</label>
+                                                            <input type="number" class="form-control" name="pregnancy_number" min="1" value="{{ isset($pregnancy) ? $pregnancy->pregnancy_number : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Fetal Movements</label>
+                                                            <select name="fetal_movements" class="form-select">
+                                                                <option value="">{{ __('app.please_choose_option') }}</option>
+                                                                <option value="Yes" {{ isset($pregnancy) && $pregnancy->fetal_movements === 'Yes' ? 'selected' : '' }}>Yes</option>
+                                                                <option value="No" {{ isset($pregnancy) && $pregnancy->fetal_movements === 'No' ? 'selected' : '' }}>No</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">If Yes, When Started</label>
+                                                            <input type="date" class="form-control" name="fetal_movements_started_at" value="{{ isset($pregnancy) ? $pregnancy->fetal_movements_started_at : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Multiple Pregnancy</label>
+                                                            <input type="text" class="form-control" name="multiple_pregnancy_type" value="{{ isset($pregnancy) ? $pregnancy->multiple_pregnancy_type : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-12">
+                                                            <label class="form-label">Danger Signs Reported</label>
+                                                            <textarea class="form-control" name="danger_signs" rows="2">{{ isset($pregnancy) ? $pregnancy->danger_signs : '' }}</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Medical History</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label d-block">Chronic Illnesses</label>
+                                                            <textarea class="form-control" name="chronic_illnesses" rows="2">{{ isset($pregnancy) ? $pregnancy->chronic_illnesses : '' }}</textarea>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label d-block">Previous Pregnancy Complications</label>
+                                                            <textarea class="form-control" name="previous_pregnancy_complications" rows="2">{{ isset($pregnancy) ? $pregnancy->previous_pregnancy_complications : '' }}</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Blood Transfusion History</label>
+                                                            <select name="blood_transfusion_history" class="form-select">
+                                                                <option value="">{{ __('app.please_choose_option') }}</option>
+                                                                <option value="Yes" {{ isset($pregnancy) && $pregnancy->blood_transfusion_history === 'Yes' ? 'selected' : '' }}>Yes</option>
+                                                                <option value="No" {{ isset($pregnancy) && $pregnancy->blood_transfusion_history === 'No' ? 'selected' : '' }}>No</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Surgical History</label>
+                                                            <input type="text" class="form-control" name="surgical_history" value="{{ isset($pregnancy) ? $pregnancy->surgical_history : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Allergies (drugs, foods)</label>
+                                                            <input type="text" class="form-control" name="allergies" value="{{ isset($pregnancy) ? $pregnancy->allergies : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Physical & Clinical Measurements (Baseline)</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Height (cm)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="height_cm" value="{{ isset($pregnancy) ? $pregnancy->height_cm : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Weight (kg)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="weight_kg" value="{{ isset($pregnancy) ? $pregnancy->weight_kg : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">BMI</label>
+                                                            <input type="number" step="0.1" class="form-control" name="bmi" value="{{ isset($pregnancy) ? $pregnancy->bmi : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Blood Pressure</label>
+                                                            <input type="text" class="form-control" name="blood_pressure" value="{{ isset($pregnancy) ? $pregnancy->blood_pressure : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Temperature (°C)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="temperature_c" value="{{ isset($pregnancy) ? $pregnancy->temperature_c : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Pulse Rate</label>
+                                                            <input type="number" class="form-control" name="pulse_rate" value="{{ isset($pregnancy) ? $pregnancy->pulse_rate : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">MUAC (cm)</label>
+                                                            <input type="number" step="0.1" class="form-control" name="muac_cm" value="{{ isset($pregnancy) ? $pregnancy->muac_cm : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Blood Group</label>
+                                                            <select name="blood_group" class="form-select">
+                                                                <option value="">{{ __('app.please_choose_option') }}</option>
+                                                                <option value="A+" {{ isset($pregnancy) && $pregnancy->blood_group === 'A+' ? 'selected' : '' }}>A+</option>
+                                                                <option value="A-" {{ isset($pregnancy) && $pregnancy->blood_group === 'A-' ? 'selected' : '' }}>A-</option>
+                                                                <option value="B+" {{ isset($pregnancy) && $pregnancy->blood_group === 'B+' ? 'selected' : '' }}>B+</option>
+                                                                <option value="B-" {{ isset($pregnancy) && $pregnancy->blood_group === 'B-' ? 'selected' : '' }}>B-</option>
+                                                                <option value="AB+" {{ isset($pregnancy) && $pregnancy->blood_group === 'AB+' ? 'selected' : '' }}>AB+</option>
+                                                                <option value="AB-" {{ isset($pregnancy) && $pregnancy->blood_group === 'AB-' ? 'selected' : '' }}>AB-</option>
+                                                                <option value="O+" {{ isset($pregnancy) && $pregnancy->blood_group === 'O+' ? 'selected' : '' }}>O+</option>
+                                                                <option value="O-" {{ isset($pregnancy) && $pregnancy->blood_group === 'O-' ? 'selected' : '' }}>O-</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Rhesus Factor</label>
+                                                            <select name="rhesus_factor" class="form-select">
+                                                                <option value="">{{ __('app.please_choose_option') }}</option>
+                                                                <option value="Positive" {{ isset($pregnancy) && $pregnancy->rhesus_factor === 'Positive' ? 'selected' : '' }}>Positive</option>
+                                                                <option value="Negative" {{ isset($pregnancy) && $pregnancy->rhesus_factor === 'Negative' ? 'selected' : '' }}>Negative</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Hemoglobin Level</label>
+                                                            <input type="text" class="form-control" name="hemoglobin_level" value="{{ isset($pregnancy) ? $pregnancy->hemoglobin_level : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Laboratory Results</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">HIV Status</label>
+                                                            <input type="text" class="form-control" name="hiv_status" value="{{ isset($pregnancy) ? $pregnancy->hiv_status : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Syphilis Result</label>
+                                                            <input type="text" class="form-control" name="syphilis_result" value="{{ isset($pregnancy) ? $pregnancy->syphilis_result : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Hepatitis B Result</label>
+                                                            <input type="text" class="form-control" name="hepatitis_b_result" value="{{ isset($pregnancy) ? $pregnancy->hepatitis_b_result : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Urinalysis Protein</label>
+                                                            <input type="text" class="form-control" name="urinalysis_protein" value="{{ isset($pregnancy) ? $pregnancy->urinalysis_protein : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Urinalysis Sugar</label>
+                                                            <input type="text" class="form-control" name="urinalysis_sugar" value="{{ isset($pregnancy) ? $pregnancy->urinalysis_sugar : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Blood Sugar</label>
+                                                            <input type="text" class="form-control" name="blood_sugar" value="{{ isset($pregnancy) ? $pregnancy->blood_sugar : '' }}">
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">Malaria Test Result</label>
+                                                            <input type="text" class="form-control" name="malaria_test_result" value="{{ isset($pregnancy) ? $pregnancy->malaria_test_result : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Treatment & Preventive Care</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Iron/Folic Started</label>
+                                                            <input type="text" class="form-control" name="iron_folic_started" value="{{ isset($pregnancy) ? $pregnancy->iron_folic_started : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Deworming Status</label>
+                                                            <input type="text" class="form-control" name="deworming_status" value="{{ isset($pregnancy) ? $pregnancy->deworming_status : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Tetanus Toxoid Doses</label>
+                                                            <input type="text" class="form-control" name="tetanus_toxoid_doses" value="{{ isset($pregnancy) ? $pregnancy->tetanus_toxoid_doses : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Current Medications</label>
+                                                            <input type="text" class="form-control" name="current_medications" value="{{ isset($pregnancy) ? $pregnancy->current_medications : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr class="my-4 text-muted">
+
+                                                    <div>
+                                                        <h5 class="text-center">Social & Lifestyle Factors</h5>
+                                                    </div>
+
+                                                    <div class="row gy-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Occupation</label>
+                                                            <input type="text" class="form-control" name="occupation" value="{{ isset($pregnancy) ? $pregnancy->occupation : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Education Level</label>
+                                                            <input type="text" class="form-control" name="education_level" value="{{ isset($pregnancy) ? $pregnancy->education_level : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Smoking Status</label>
+                                                            <input type="text" class="form-control" name="smoking_status" value="{{ isset($pregnancy) ? $pregnancy->smoking_status : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row gy-3 mt-1">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Alcohol Use</label>
+                                                            <input type="text" class="form-control" name="alcohol_use" value="{{ isset($pregnancy) ? $pregnancy->alcohol_use : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Domestic Violence Exposure</label>
+                                                            <input type="text" class="form-control" name="domestic_violence_exposure" value="{{ isset($pregnancy) ? $pregnancy->domestic_violence_exposure : '' }}">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Nutritional Status</label>
+                                                            <input type="text" class="form-control" name="nutritional_status" value="{{ isset($pregnancy) ? $pregnancy->nutritional_status : '' }}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mt-3">
                                                         <div class="col-md-12" id="patient_alert"></div>
                                                     </div>
                                                 </div>
 
                                                 <div class="d-flex align-items-start gap-3 mt-4">
-                                                    <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-address-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back to Address Info</button>
-                                                    <button type="button" id="patient_btn" class="btn btn-success btn-label right ms-auto nexttab
-nexttab" ><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i> Submit</button>
+                                                    <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-address-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> {{ __('app.back_to_address_info') }}</button>
+                                                    <button type="button" id="patient_btn" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i> Update</button>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                             <!-- end tab pane -->
                                             <!-- end tab pane -->
                                         </div>

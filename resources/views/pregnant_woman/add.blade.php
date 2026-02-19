@@ -493,11 +493,25 @@
                                                     <div class="row gy-3">
                                                         <div class="col-md-3">
                                                             <label class="form-label">Blood Group</label>
-                                                            <input type="text" class="form-control" name="blood_group" placeholder="e.g. A, B, O, AB">
+                                                            <select name="blood_group" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="A+">A+</option>
+                                                                <option value="A-">A-</option>
+                                                                <option value="B+">B+</option>
+                                                                <option value="B-">B-</option>
+                                                                <option value="AB+">AB+</option>
+                                                                <option value="AB-">AB-</option>
+                                                                <option value="O+">O+</option>
+                                                                <option value="O-">O-</option>
+                                                            </select>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label class="form-label">Rhesus Factor</label>
-                                                            <input type="text" class="form-control" name="rhesus_factor" placeholder="e.g. + or -">
+                                                            <select name="rhesus_factor" class="form-select">
+                                                                <option value="" selected>Please Select</option>
+                                                                <option value="Positive">Positive</option>
+                                                                <option value="Negative">Negative</option>
+                                                            </select>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label class="form-label">Hemoglobin (g/dL)</label>
@@ -779,11 +793,16 @@ nexttab" ><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>
         data:dataz,
         success:function(response){
           console.log(response);
-         // return;
           $('#patient_alert').html('<div class="alert alert-success">'+response.message+'</div>');
-          setTimeout(function(){
-            window.location.href="{{ route('clients.list')}}";
-        },500);
+          if (response.is_pregnancy && response.patient_id) {
+              setTimeout(function(){
+                  window.location.href = "{{ url('pregnancy') }}/" + response.patient_id + "/pdf";
+              },500);
+          } else {
+              setTimeout(function(){
+                  window.location.href="{{ route('clients.list')}}";
+              },500);
+          }
 
         },
         error:function(response){

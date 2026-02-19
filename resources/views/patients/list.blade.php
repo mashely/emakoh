@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Clients Records</h4>
+                    <h4 class="mb-sm-0">{{ __('app.clients_records_title') }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Records</a></li>
-                            <li class="breadcrumb-item active">Clients Records</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">{{ __('app.records_breadcrumb') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('app.clients_records_title') }}</li>
                         </ol>
                     </div>
 
@@ -25,7 +25,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0 text-center">Clients Records</h4>
+                        <h4 class="card-title mb-0 text-center">{{ __('app.clients_records_title') }}</h4>
                     </div><!-- end card header -->
 
                     <div class="card-body">
@@ -36,31 +36,31 @@
                                     <div>
                                         <a href="{{ route('client.form')}}">
                                             <button type="button" class="btn btn-success add-btn" >
-                                                <i class="ri-add-line align-bottom me-1"></i> Add Client
+                                                <i class="ri-add-line align-bottom me-1"></i> {{ __('app.add_client') }}
                                             </button>
                                         </a>
-                                       
+
                                     </div>
-                                        
+
                                     @endif
-                                   
+
                                 </div>
                             </div>
-                            
+
                             <div class="table-responsive table-card mt-3 mb-1">
                                 <table class="table align-middle table-nowrap table-hover table-striped" id="table_id">
                                     <thead class="table-light">
                                         <tr>
                                             <th >#</th>
-                                            <th>Registration Date</th>
-                                            <th>Client ID</th>
-                                            <th>Client Name</th>
-                                            <th>Gender</th>
-                                            <th>Age</th>
-                                            <th>ID Details</th>
-                                            <th>Status</th>
-                                            <th>Appoitments</th>
-                                            <th>Action</th>
+                                            <th>{{ __('app.registration_date') }}</th>
+                                            <th>{{ __('app.client_id') }}</th>
+                                            <th>{{ __('app.client_name') }}</th>
+                                            <th>{{ __('app.gender') }}</th>
+                                            <th>{{ __('app.age') }}</th>
+                                            <th>{{ __('app.id_details') }}</th>
+                                            <th>{{ __('app.status') }}</th>
+                                            <th>{{ __('app.appointments') }}</th>
+                                            <th>{{ __('app.action') }}</th>
                                             </tr>
                                     </thead>
                                     <tbody>
@@ -75,32 +75,35 @@
                                             <td >
                                                 @if ($client->id_type)
                                                 I:T-{{ $client->idType->name }} <br>
-                                                I:N -{{ $client->id_number }}  
+                                                I:N -{{ $client->id_number }}
                                                 @else
-                                                I:T-{{ "Not Specified (N/A)" }} <br>
+                                                I:T-{{ __('app.not_specified_na') }} <br>
                                                 I:N -{{ $client->id_number }}
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($client->status == "Active")
-                                                <span class="badge badge-soft-success text-uppercase">Active</span> 
+                                                <span class="badge badge-soft-success text-uppercase">{{ __('app.active') }}</span>
                                                 @else
-                                                <span class="badge badge-soft-danger text-uppercase">InActive</span> 
+                                                <span class="badge badge-soft-danger text-uppercase">{{ __('app.inactive') }}</span>
                                                 @endif
                                             </td>
                                             <td>
                                                 <a href="{{ route('client.reminders',$client->id )}}">
-                                                <button class="btn btn-primary"><i class=" bx bx-list-ul"></i> Reminders </button>
+                                                <button class="btn btn-primary"><i class=" bx bx-list-ul"></i> {{ __('app.reminders') }} </button>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="{{ route('client.edit',$client->id )}}">
-                                                <button class="btn btn-info btn-sm" title="Edit"><i class="bx bx-edit"></i> Edit </button>
+                                                <button class="btn btn-info btn-sm" title="{{ __('app.edit') }}"><i class="bx bx-edit"></i> {{ __('app.edit') }} </button>
+                                                </a>
+                                                <a href="{{ route('pregnancy.pdf',$client->id) }}" target="_blank">
+                                                <button class="btn btn-secondary btn-sm" title="{{ __('app.view_pdf') }}"><i class="bx bx-file"></i> {{ __('app.view_pdf') }}</button>
                                                 </a>
                                             </td>
 
                                             </tr>
-                                            
+
                                         @endforeach
                                         {{-- <tr>
                                             <th scope="row">
@@ -128,7 +131,7 @@
                                         </tr> --}}
                                     </tbody>
                                 </table>
-                             
+
                             </div>
                         </div>
                     </div><!-- end card -->
@@ -139,10 +142,10 @@
         </div>
         <!-- end row -->
 
-      
+
         <!-- end row -->
 
-      
+
         <!-- end row -->
 
         <!-- Modal -->
