@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Client</h4>
+                    <h4 class="mb-sm-0">{{ __('app.client_page_title') }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Register</a></li>
-                            <li class="breadcrumb-item active">Client Registration</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">{{ __('app.client_register_breadcrumb') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('app.client_registration') }}</li>
                         </ol>
                     </div>
 
@@ -26,7 +26,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0 text-center">Pregnancy Registration</h4>
+                        <h4 class="card-title mb-0 text-center">{{ __('app.pregnancy_registration') }}</h4>
                     </div><!-- end card header -->
                     <div class="card-body form-steps">
                         <form class="vertical-navs-step" id="patient_reg">
@@ -37,23 +37,23 @@
                                         <button class="nav-link done" id="v-pills-bill-info-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bill-info" type="button" role="tab" aria-controls="v-pills-bill-info" aria-selected="false">
                                             <span class="step-title me-2">
                                                 <i class="ri-close-circle-fill step-icon me-2"></i>
-                                                Step 1
+                                                {{ __('app.step1_personal_info') }}
                                             </span>
-                                            Personal Information
+                                            {{ __('app.personal_information') }}
                                         </button>
                                         <button class="nav-link" id="v-pills-bill-address-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bill-address" type="button" role="tab" aria-controls="v-pills-bill-address" aria-selected="false">
                                             <span class="step-title me-2">
                                                 <i class="ri-close-circle-fill step-icon me-2"></i>
-                                                Step 2
+                                                {{ __('app.step2_address_contacts') }}
                                             </span>
-                                            Address & Contacts
+                                            {{ __('app.address_contacts') }}
                                         </button>
                                         <button class="nav-link" id="v-pills-payment-tab" data-bs-toggle="pill" data-bs-target="#v-pills-payment" type="button" role="tab" aria-controls="v-pills-payment" aria-selected="false">
                                             <span class="step-title me-2">
                                                 <i class="ri-close-circle-fill step-icon me-2"></i>
-                                                Step 3
+                                                {{ __('app.step3_pregnancy_visit') }}
                                             </span>
-                                            Pregnancy & Visit
+                                            {{ __('app.pregnancy_visit') }}
                                         </button>
                                     </div>
                                     <!-- end nav -->
@@ -63,48 +63,48 @@
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="v-pills-bill-info" role="tabpanel" aria-labelledby="v-pills-bill-info-tab">
                                                 <div>
-                                                    <h5 class="text-center">Personal Identification Details</h5>
+                                                    <h5 class="text-center">{{ __('app.personal_identification_details') }}</h5>
                                                 </div>
                                                 <hr>
                                                 <div>
                                                     <div class="row g-3">
                                                         <div class="row">
                                                             <div class="col-sm-6">
-                                                                <label for="firstName" class="form-label"> First name <i id="required-field"> * </i> </label>
-                                                                <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="first_name" required>
+                                                                <label for="firstName" class="form-label"> {{ __('app.first_name') }} <i id="required-field"> * </i> </label>
+                                                                <input type="text" class="form-control" id="firstName" placeholder="{{ __('app.first_name') }}" name="first_name" required>
                                                             </div>
 
                                                             <div class="col-sm-6">
-                                                                <label for="lastName" class="form-label">Middle name</label>
-                                                                <input type="text" class="form-control" id="middleName" placeholder="Enter Middle Name" name="middle_name">
+                                                                <label for="lastName" class="form-label">{{ __('app.middle_name') }}</label>
+                                                                <input type="text" class="form-control" id="middleName" placeholder="{{ __('app.middle_name') }}" name="middle_name">
                                                             </div>
 
                                                             <div class="col-sm-6">
-                                                                <label for="username" class="form-label">Last Name <i id="required-field"> * </i></label>
+                                                                <label for="username" class="form-label">{{ __('app.last_name') }} <i id="required-field"> * </i></label>
                                                                 <div class="input-group">
-                                                                    <input type="text" class="form-control" id="lastName" placeholder="Write Last Name" name="last_name">
+                                                                    <input type="text" class="form-control" id="lastName" placeholder="{{ __('app.last_name') }}" name="last_name">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-sm-6">
-                                                                <label for="DOB" class="form-label">Date of Birth <i id="required-field"> * </i></label>
+                                                                <label for="DOB" class="form-label">{{ __('app.date_of_birth') }} <i id="required-field"> * </i></label>
                                                                 <input type="date" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d')}}">
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                <label for="Gender" class="form-label">Gender <i id="required-field"> * </i></label>
+                                                                <label for="Gender" class="form-label">{{ __('app.gender') }} <i id="required-field"> * </i></label>
                                                                <select name="gender" class="form-select" id="">
-                                                                   <option value="" selected>Please Select Gender</option>
+                                                                   <option value="" selected>{{ __('app.please_select_gender') }}</option>
                                                                    @foreach ($gender as $item)
                                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                                    @endforeach
                                                                </select>
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                <label for="Gender" class="form-label">Marital Status <i id="required-field"> * </i></label>
+                                                                <label for="Gender" class="form-label">{{ __('app.marital_status') }} <i id="required-field"> * </i></label>
                                                                 <select name="marital_status" class="form-select" id="">
-                                                                    <option value="" selected>Please Select Marital Status</option>
+                                                                    <option value="" selected>{{ __('app.please_select_marital_status') }}</option>
                                                                     @foreach ($marital_status as $item)
                                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                                     @endforeach
@@ -114,42 +114,42 @@
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-sm-6">
-                                                                <label for="DOB" class="form-label">ID Type <i id="required-field"> * </i></label>
+                                                                <label for="DOB" class="form-label">{{ __('app.id_type') }} <i id="required-field"> * </i></label>
                                                                 <select name="id_type" class="form-select" id="">
-                                                                    <option value="" selected>Please Select Id Type</option>
+                                                                    <option value="" selected>{{ __('app.please_select_id_type') }}</option>
                                                                     @foreach ($idtype as $item)
                                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                <label for="Id" class="form-label">Id Number</label>
-                                                                <input type="twxt" class="form-control" id="idnumber" name="id_number" placeholder="Enter Id Number">
+                                                                <label for="Id" class="form-label">{{ __('app.id_number') }}</label>
+                                                                <input type="twxt" class="form-control" id="idnumber" name="id_number" placeholder="{{ __('app.id_number') }}">
                                                             </div>
                                                         </div>
 
-                                                        <P><b>NOTE: Those field marked with <span id="required-field">*</span> are mandatory field</b></P>
+                                                        <P><b>{{ __('app.note_required_fields') }}</b></P>
 
                                                     </div>
                                                 </div>
 
                                                 <div class="d-flex align-items-start gap-3 mt-4">
                                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
-nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Address & Contacts</button>
+    nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>{{ __('app.go_to_address_contacts') }}</button>
                                                 </div>
                                             </div>
                                             <!-- end tab pane -->
                                             <div class="tab-pane fade " id="v-pills-bill-address" role="tabpanel" aria-labelledby="v-pills-bill-address-tab">
                                                 <div>
-                                                    <h5 class="text-center">Address & Contacts</h5>
+                                                    <h5 class="text-center">{{ __('app.address_contacts') }}</h5>
                                                 </div>
                                                 <hr>
                                                 <div>
                                                     <div class="row g-3">
                                                         <div class="col-md-4">
-                                                            <label for="region_id" class="form-label">Region <i id="required-field"> * </i></label>
+                                                            <label for="region_id" class="form-label">{{ __('app.region') }} <i id="required-field"> * </i></label>
                                                             <select class="form-select" name="region" id="region_id" >
-                                                                <option value="">Please Choose Region</option>
+                                                                <option value="">{{ __('app.please_choose_region') }}</option>
                                                                 @foreach ($regions as $item)
                                                                 <option value="{{ $item->reg_code }}">{{ $item->reg_name }}</option>
                                                                 @endforeach
@@ -157,23 +157,23 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                         </div>
 
                                                         <div class="col-md-4">
-                                                            <label for="district_id" class="form-label">District <i id="required-field"> * </i></label>
+                                                            <label for="district_id" class="form-label">{{ __('app.district') }} <i id="required-field"> * </i></label>
                                                             <select class="form-select" name="district" id="district_id">
-                                                                <option value="" selected>Please Choose District</option>
+                                                                <option value="" selected>{{ __('app.please_choose_district') }}</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="col-md-4">
-                                                            <label for="zip" class="form-label">Ward <i id="required-field"> * </i></label>
+                                                            <label for="zip" class="form-label">{{ __('app.ward') }} <i id="required-field"> * </i></label>
                                                             <select name="ward" class="form-select"  id="ward_id">
-                                                                <option value="" selected>Please Choose Ward</option>
+                                                                <option value="" selected>{{ __('app.please_choose_ward') }}</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <label for="Location">Physical Location <i id="required-field"> * </i></label>
-                                                            <textarea name="location" rows="7" class="form-control" placeholder="Write Physical address"></textarea>
+                                                            <label for="Location">{{ __('app.physical_location') }} <i id="required-field"> * </i></label>
+                                                            <textarea name="location" rows="7" class="form-control" placeholder="{{ __('app.write_physical_address') }}"></textarea>
                                                         </div>
 
                                                     </div>
@@ -181,71 +181,71 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                     <hr class="my-4 text-muted">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label for="Location">Phone Number <i id="required-field"> * </i></label>
-                                                            <input type="number" class="form-control" placeholder="Enter Phone Number" name="phone_number">
+                                                            <label for="Location">{{ __('app.phone_number') }} <i id="required-field"> * </i></label>
+                                                            <input type="number" class="form-control" placeholder="{{ __('app.enter_phone_number') }}" name="phone_number">
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label for="Location">Alternative Phone Number</label>
-                                                            <input type="number" class="form-control" placeholder="Enter Alternative Phone Number" name="alt_phone_number">
+                                                            <label for="Location">{{ __('app.alternative_phone_number') }}</label>
+                                                            <input type="number" class="form-control" placeholder="{{ __('app.enter_alternative_phone_number') }}" name="alt_phone_number">
                                                         </div>
                                                     </div>
 
                                                     <div class="row mt-3">
                                                         <div class="col-md-6">
-                                                            <label for="Location">Emergency Contact Person</label>
-                                                            <input type="text" class="form-control" placeholder="Enter Emergency Contact Person" name="emergency_contact_name">
+                                                            <label for="Location">{{ __('app.emergency_contact_person') }}</label>
+                                                            <input type="text" class="form-control" placeholder="{{ __('app.enter_emergency_contact_person') }}" name="emergency_contact_name">
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label for="Location">Emergency Contact Phone</label>
-                                                            <input type="number" class="form-control" placeholder="Enter Emergency Contact Phone" name="emergency_contact_phone">
+                                                            <label for="Location">{{ __('app.emergency_contact_phone') }}</label>
+                                                            <input type="number" class="form-control" placeholder="{{ __('app.enter_emergency_contact_phone') }}" name="emergency_contact_phone">
                                                         </div>
                                                     </div>
-                                                    <P style="margin-top: 15px;"><b>NOTE: Those field marked with <span id="required-field">*</span> are mandatory field</b></P>
+                                                    <P style="margin-top: 15px;"><b>{{ __('app.note_required_fields') }}</b></P>
 
                                                 </div>
                                                 <div class="d-flex align-items-start gap-3 mt-4">
-                                                    <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> Back to Personal Info</button>
+                                                    <button type="button" class="btn btn-light btn-label previestab" data-previous="v-pills-bill-info-tab"><i class="ri-arrow-left-line label-icon align-middle fs-16 me-2"></i> {{ __('app.back_to_personal_info') }}</button>
                                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
-nexttab" data-nexttab="v-pills-payment-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>Go to Service</button>
+    nexttab" data-nexttab="v-pills-payment-tab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>{{ __('app.go_to_pregnancy_section') }}</button>
                                                 </div>
                                             </div>
                                             <!-- end tab pane -->
                                             <div class="tab-pane fade" id="v-pills-payment" role="tabpanel" aria-labelledby="v-pills-payment-tab">
                                                 <div>
-                                                    <h5 class="text-center">Pregnancy & Obstetric History</h5>
+                                                    <h5 class="text-center">{{ __('app.pregnancy_obstetric_history') }}</h5>
                                                 </div>
 
                                                 <div>
                                                     <div class="row gy-3">
                                                         <div class="col-md-4">
-                                                            <label class="form-label">Gravida</label>
+                                                            <label class="form-label">{{ __('app.gravida') }}</label>
                                                             <input type="number" class="form-control" name="gravida" min="0">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <label class="form-label">Para</label>
+                                                            <label class="form-label">{{ __('app.para_label') }}</label>
                                                             <input type="number" class="form-control" name="para" min="0">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <label class="form-label">Number of Living Children</label>
+                                                            <label class="form-label">{{ __('app.number_of_living_children') }}</label>
                                                             <input type="number" class="form-control" name="living_children" min="0">
                                                         </div>
                                                     </div>
 
                                                     <div class="row gy-3 mt-1">
                                                         <div class="col-md-3">
-                                                            <label class="form-label">Miscarriages / Abortions</label>
+                                                            <label class="form-label">{{ __('app.miscarriages_abortions') }}</label>
                                                             <input type="number" class="form-control" name="miscarriages" min="0">
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <label class="form-label">Stillbirths</label>
+                                                            <label class="form-label">{{ __('app.stillbirths') }}</label>
                                                             <input type="number" class="form-control" name="stillbirths" min="0">
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <label class="form-label">Cesarean Sections</label>
+                                                            <label class="form-label">{{ __('app.cesarean_sections') }}</label>
                                                             <input type="number" class="form-control" name="cesarean_sections" min="0">
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <label class="form-label">Preterm Births</label>
+                                                            <label class="form-label">{{ __('app.preterm_births') }}</label>
                                                             <input type="number" class="form-control" name="preterm_births" min="0">
                                                         </div>
                                                     </div>

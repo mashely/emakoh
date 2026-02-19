@@ -2,15 +2,15 @@
     <thead class="table-light">
         <tr>
             <th >#</th>
-            <th>Registration Date</th>
-            <th>Client ID</th>
-            <th>Client Name</th>
-            <th>Hospital Name</th>
-            <th>Service Type</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th>{{ __('app.registration_date') }}</th>
+            <th>{{ __('app.client_id') }}</th>
+            <th>{{ __('app.client_name') }}</th>
+            <th>{{ __('app.hospital_name') }}</th>
+            <th>{{ __('app.service_type') }}</th>
+            <th>{{ __('app.start_date') }}</th>
+            <th>{{ __('app.end_date') }}</th>
+            <th>{{ __('app.status') }}</th>
+            <th>{{ __('app.action') }}</th>
             </tr>
     </thead>
     <tbody>
@@ -26,9 +26,9 @@
             <td>{{ date('d-M-Y',strtotime($reminder->end_date)) }}</td>
             <td>
                 @if ($reminder->status == "OPEN")
-                <span class="badge badge-soft-success text-uppercase">OPEN</span> 
+                <span class="badge badge-soft-success text-uppercase">{{ __('app.open') }}</span> 
                 @else
-                <span class="badge badge-soft-danger text-uppercase">CLOSED</span> 
+                <span class="badge badge-soft-danger text-uppercase">{{ __('app.closed') }}</span> 
                 @endif
             </td>
             

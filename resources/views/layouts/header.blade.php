@@ -70,14 +70,14 @@
                     <button type="button" class="btn btn-light waves-effect"
                         id="page-header-cart-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class='bx bx-search-alt-2'></i> Search ....
+                        <i class='bx bx-search-alt-2'></i> {{ __('app.search') }} ....
                     </button>
                     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end p-0 dropdown-menu-cart"
                         aria-labelledby="page-header-cart-dropdown">
                         <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
                             <div class="row align-items-center text-center">
                                 <div class="col">
-                                    <h6 class="m-0 fs-16 fw-semibold"> Client Search</h6>
+                                    <h6 class="m-0 fs-16 fw-semibold"> {{ __('app.client_search') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -86,19 +86,19 @@
                                 <form action="{{ route('client.search')}}" method="POST">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="Client ID" class="form-label">Client ID</label>
+                                        <label for="Client ID" class="form-label">{{ __('app.search_client_id') }}</label>
                                         <input type="number"  class="form-control" name="client_id" placeholder="Enter Client ID ..."  />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="Phone Number" class="form-label">Phone Number</label>
+                                        <label for="Phone Number" class="form-label">{{ __('app.search_phone_number') }}</label>
                                         <input type="number" class="form-control" name="phone_number" placeholder="Enter Phone Number ....." />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="Phone Number" class="form-label">Id Number</label>
+                                        <label for="Phone Number" class="form-label">{{ __('app.search_id_number') }}</label>
                                         <input type="number" class="form-control" name="id_number" placeholder="Enter ID Number ....." />
                                     </div>
                                     <div class="mb-3">
-                                        <button  type="submit" class="btn btn-success text-center w-100"> <i class='bx bx-search-alt-2'></i> Search</button>
+                                        <button  type="submit" class="btn btn-success text-center w-100"> <i class='bx bx-search-alt-2'></i> {{ __('app.search') }}</button>
                                     </div>
                                 </form>
                             </div>
