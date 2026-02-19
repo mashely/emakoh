@@ -134,19 +134,19 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}!</h6>
+                        <h6 class="dropdown-header">{{ __('app.welcome') }} {{ Auth::user()->name }}!</h6>
                         <a class="dropdown-item" href="{{ route('profile.index')}}"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
-                                class="align-middle">Profile</span></a>
+                                class="align-middle">{{ __('app.profile') }}</span></a>
                         <a class="dropdown-item" href="#"><i
                                 class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
-                                class="align-middle">Settings</span></a>
+                                class="align-middle">{{ __('app.settings') }}</span></a>
                         {{-- <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
                                 class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Lock screen</span></a> --}}
                         <a class="dropdown-item" href="{{ route('logout.user')}}"><i
                                 class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
-                                class="align-middle" data-key="t-logout">Logout</span></a>
+                                class="align-middle" data-key="t-logout">{{ __('app.logout') }}</span></a>
                     </div>
                 </div>
             </div>
