@@ -119,6 +119,29 @@
                         <i class='bx bx-moon fs-22'></i>
                     </button>
                 </div>
+                @if (Auth::check() && !Auth::user()->hasRole(1))
+                <div class="dropdown ms-1 header-item d-none d-sm-flex">
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+                        id="page-header-language-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="bx bx-globe fs-22"></i>
+                        <span class="ms-1">{{ strtoupper(app()->getLocale()) }}</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <form method="POST" action="{{ route('locale.switch') }}">
+                            @csrf
+                            <button type="submit" name="locale" value="en"
+                                class="dropdown-item {{ app()->getLocale() === 'en' ? 'active' : '' }}">
+                                {{ __('app.english') }}
+                            </button>
+                            <button type="submit" name="locale" value="sw"
+                                class="dropdown-item {{ app()->getLocale() === 'sw' ? 'active' : '' }}">
+                                {{ __('app.swahili') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @endif
                 <div class="dropdown ms-sm-3 header-item topbar-user">
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">

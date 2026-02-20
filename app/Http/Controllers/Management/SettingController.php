@@ -10,6 +10,7 @@ use Auth;
 class SettingController extends Controller
 {
     public function __construct(){
+        parent::__construct();
         $this->middleware('auth');
     }
 
@@ -81,4 +82,3 @@ class SettingController extends Controller
         return redirect()->route('settings.index')->with('status','Settings saved successfully');
     }
 }
-

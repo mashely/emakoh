@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,16 @@ Route::post('reset/password','Auth\ResetPasswordController@reset_password')->nam
 Route::get('reset/form','Auth\ResetPasswordController@index')->name('reset.form');
 Route::get('dashboard','Dashboard\HomeController@index')->name('dashboard');
 Route::get('hospital/dashboard','Dashboard\HospitalController@index')->name('hospital.dashboard');
+Route::post('locale/switch',function(Request $request){
+    $locale =$request->input('locale');
+    if (!in_array($locale,['en','sw'])) {
+        abort(400);
+    }
+    if (Auth::check()) {
+        session(['app_locale'=>$locale]);
+    }
+    return redirect()->back();
+})->name('locale.switch');
 Route::get('clients','Patient\RegistrationController@index')->name('clients.list');
 Route::get('client/registration','Patient\RegistrationController@patient_form')->name('client.form');
 Route::post('client/create','Patient\RegistrationController@create')->name('client.create');
@@ -72,5 +84,4 @@ Route::post('user/generate/report','Report\UserController@generate_report')->nam
 Route::get('reminders/report','Report\ReminderController@index')->name('reminders.report');
 Route::post('reminder/filter','Report\ReminderController@filter_reminders')->name('reminder.filter');
 Route::post('reminder/generate/report','Report\ReminderController@generate_report')->name('reminder.get.report');
-
 

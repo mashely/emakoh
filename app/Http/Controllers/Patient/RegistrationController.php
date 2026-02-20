@@ -22,6 +22,7 @@ use Auth;
 class RegistrationController extends Controller
 {
     public function __construct(){
+        parent::__construct();
         $this->middleware('auth');
     }
 
