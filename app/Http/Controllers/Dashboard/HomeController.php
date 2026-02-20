@@ -12,9 +12,10 @@ use Datetime;
 
 class HomeController extends Controller
 {
-     
+
     public function __construct(){
-        return $this->middleware('auth');
+        parent::__construct();
+        $this->middleware('auth');
     }
 
     public function index(){
@@ -50,36 +51,36 @@ class HomeController extends Controller
         ->selectRaw( ' COUNT(*) as count, YEAR(created_at) year,MONTH(created_at) month ')
         ->groupBy(  'year', 'month' )
         ->get( array( 'month', 'count' ) );
-  
+
         $members_array = array();
         foreach ( $monthly_reg as $month ) {
-  
+
             $dateObj   = DateTime::createFromFormat( '!m', $month->month );
             $monthName = substr( $dateObj->format( 'F' ), 0, 3 );
             $sale_ = $month->count;
-  
+
             $members_array[$monthName] = $month->count;
-  
+
         }
-  
-        
+
+
         $month_array = array();
         for ( $i = 1; $i <= 12; $i++ ) {
-  
+
             $dateObj   = DateTime::createFromFormat( '!m', $i );
             $monthName = substr( $dateObj->format( 'F' ), 0, 3 );
-  
+
             if ( array_key_exists( $monthName, $members_array ) ) {
                 $month_array[] = $members_array[$monthName];
             } else {
                 $month_array[] = 0;
             }
-  
+
         }
-  
+
         return implode(",",$month_array);
-  
-  
+
+
     }
 
     public function visits() {
@@ -89,35 +90,35 @@ class HomeController extends Controller
         ->selectRaw( ' COUNT(*) as count, YEAR(created_at) year,MONTH(created_at) month ')
         ->groupBy(  'year', 'month' )
         ->get( array( 'month', 'count' ) );
-  
+
         $members_array = array();
         foreach ( $monthly_reg as $month ) {
-  
+
             $dateObj   = DateTime::createFromFormat( '!m', $month->month );
             $monthName = substr( $dateObj->format( 'F' ), 0, 3 );
             $sale_ = $month->count;
-  
+
             $members_array[$monthName] = $month->count;
-  
+
         }
-  
-        
+
+
         $month_array = array();
         for ( $i = 1; $i <= 12; $i++ ) {
-  
+
             $dateObj   = DateTime::createFromFormat( '!m', $i );
             $monthName = substr( $dateObj->format( 'F' ), 0, 3 );
-  
+
             if ( array_key_exists( $monthName, $members_array ) ) {
                 $month_array[] = $members_array[$monthName];
             } else {
                 $month_array[] = 0;
             }
-  
+
         }
-  
+
         return implode(",",$month_array);
-  
-  
+
+
     }
 }
