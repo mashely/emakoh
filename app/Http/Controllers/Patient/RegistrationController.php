@@ -13,6 +13,7 @@ use App\Models\ServiceAppointment;
 use App\Models\Region;
 use App\Models\District;
 use App\Models\Ward;
+use App\Models\Hospital;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use Auth;
@@ -129,7 +130,14 @@ class RegistrationController extends Controller
 
         if (!$hospital_id){
             if (Auth::user()->hasRole(1)) {
-                $hospital_id = 1;
+                $hospital_id = Hospital::value('id');
+
+                if (!$hospital_id) {
+                    return response()->json([
+                        'success' =>false,
+                        'errors'  =>'No hospital is registered yet. Please register a hospital first'
+                    ],500);
+                }
             } else {
                 return response()->json([
                     'success' =>false,
@@ -288,18 +296,16 @@ class RegistrationController extends Controller
         return $pdf->stream($fileName);
     }
 
-
-
     public function update(Request $request){
+        $client_id      =$request->input('client_id');
+        $existingPatient =Patient::findOrFail($client_id);
+
         $this->validate($request,[
-            'first_name' =>'required',
-            'last_name'  =>'required',
-            'gender'     =>'required',
-            'dob'        =>'required',
-            'region'         =>'required',
-            'district'       =>'required',
-            'ward'           =>'required',
-            'phone_number'   =>'required',
+            'first_name'   =>'required',
+            'last_name'    =>'required',
+            'gender'       =>'required',
+            'dob'          =>'required',
+            'phone_number' =>'required',
         ]);
 
         $first_name     =$request->input('first_name');
@@ -307,21 +313,19 @@ class RegistrationController extends Controller
         $last_name      =$request->input('last_name');
         $dob            =$request->input('dob');
         $gender         =$request->input('gender');
-        $marital_status =$request->input('marital_status');
-        $id_type        =$request->input('id_type');
-        $id_number      =$request->input('id_number');
-        $region         =$request->input('region');
-        $district       =$request->input('district');
-        $ward           =$request->input('ward');
-        $location       =$request->input('location');
+        $marital_status =$request->input('marital_status',$existingPatient->marital_status_id);
+        $id_type        =$request->input('id_type',$existingPatient->id_type);
+        $id_number      =$request->input('id_number',$existingPatient->id_number);
+        $region         =$request->input('region',$existingPatient->region_id);
+        $district       =$request->input('district',$existingPatient->district_id);
+        $ward           =$request->input('ward',$existingPatient->ward_id);
+        $location       =$request->input('location',$existingPatient->physical_address);
         $phone_number   =$request->input('phone_number');
-        $client_id      =$request->input('client_id');
         $isPregnancy    =(bool) $request->input('is_pregnancy_registration',false);
 
         $patient_reg =new Patient();
         $patient_reg =$patient_reg->updateClient($first_name,$middle_name,$last_name,$dob,$marital_status,$id_type,$id_number,
-        $region,$district,$ward,$location,$phone_number,$gender,$client_id);
-
+            $region,$district,$ward,$location,$phone_number,$gender,$client_id);
 
         if ($patient_reg && $isPregnancy) {
             $dangerSigns =$request->input('danger_signs');

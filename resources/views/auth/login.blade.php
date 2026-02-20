@@ -89,7 +89,7 @@
                                                 <input class="form-check-input" name="remember" type="checkbox" value="1" id="auth-remember-check">
                                                 <label class="form-check-label" for="auth-remember-check">Remember me</label>
                                                 <div class="float-end">
-                                                    <a href="{{ route('forgot.password')}}" class="text-muted">Forgot password?</a>
+                                                    <a href="{{ route('reset.form')}}" class="text-muted">Forgot password?</a>
                                                 </div>
                                             </div>
 

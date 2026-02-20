@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\PasswordReset;
+use Illuminate\Support\Str;
 
 
 class ForgotPasswordController extends Controller
@@ -34,26 +35,42 @@ class ForgotPasswordController extends Controller
         ]);
 
         $username =$request->input('username');
-        $user =User::where('username',$username)->first();
+        $channel =$request->input('channel','sms');
+        $user =User::where('username',$username)->orWhere('email',$username)->first();
 
         if ($user != null) {
-            $phone =$user->phone;
-            $name  =$user->name;
             $reset_code =$this->reset_code();
 
             $reset =new PasswordReset;
             $reset->reset_code =$reset_code;
             $reset->user_id    =$user->id;
+            $reset->email      =$user->email;
+            $reset->token      =Str::random(60);
+            $reset->status     =0;
             $reset->save();
 
-            $msg = "hello"." ".$name."\n";
-            $msg .="Please Use the Reset code".$reset_code." to reset the password: \n";
-            
+            if ($channel === 'email') {
+                $resetUrl = route('reset.form',['code'=>$reset_code]);
 
-            if ($reset->save() == true) {
-                return response()->json(['message'=>'Request accepted, You will receive sms to reset password'],200);
+                \Mail::raw("Hello ".$user->name."\n\nPlease click the link below to reset the password:\n".$resetUrl, function ($message) use ($user) {
+                    $message->to($user->email);
+                    $message->subject('Password Reset');
+                });
+
+                if ($reset->save() == true) {
+                    return response()->json(['message'=>'Request accepted, A reset link has been sent to your email'],200);
+                } else {
+                    return response()->json(['errors'=>'Request denied'],500);
+                }
             } else {
-                return response()->json(['errors'=>'Request denied'],500);
+                $msg = "hello"." ".$user->name."\n";
+                $msg .="Please Use the Reset code".$reset_code." to reset the password: \n";
+
+                if ($reset->save() == true) {
+                    return response()->json(['message'=>'Request accepted, You will receive sms to reset password'],200);
+                } else {
+                    return response()->json(['errors'=>'Request denied'],500);
+                }
             }
             
         } else {

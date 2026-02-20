@@ -292,8 +292,8 @@
                                                             <input type="text" class="form-control" name="pregnancy_confirmation_method" placeholder="e.g. Urine test, Ultrasound">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <label class="form-label">Pregnancy Number</label>
-                                                            <input type="number" class="form-control" name="pregnancy_number" min="1">
+                                                            <label class="form-label">Pregnancy Number (1–20)</label>
+                                                            <input type="number" class="form-control" name="pregnancy_number" min="1" max="20" placeholder="e.g. 1 for first pregnancy">
                                                         </div>
                                                     </div>
 
@@ -509,8 +509,8 @@
                                                             <label class="form-label">Rhesus Factor</label>
                                                             <select name="rhesus_factor" class="form-select">
                                                                 <option value="" selected>Please Select</option>
-                                                                <option value="Positive">Positive</option>
-                                                                <option value="Negative">Negative</option>
+                                                                <option value="Pos">Positive</option>
+                                                                <option value="Neg">Negative</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3">

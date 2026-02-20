@@ -74,13 +74,24 @@
                                             </div>
         
                                             <div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
-                                                Enter your Username /Email and Reset Code will be sent to your Phone Number!
+                                                Enter your Username or Email and choose how to receive your reset details.
                                             </div>
                                             <div class="p-2">
                                                 <form id="forgot_password">
                                                     <div class="mb-4">
                                                         <label class="form-label">Email / Username</label>
                                                         <input type="email" class="form-control" id="email" name="username" placeholder="Enter email address or Username">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label class="form-label d-block">Reset method</label>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="channel" id="reset_method_sms" value="sms" checked>
+                                                            <label class="form-check-label" for="reset_method_sms">Send code to phone (SMS)</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="channel" id="reset_method_email" value="email">
+                                                            <label class="form-check-label" for="reset_method_email">Send link to email</label>
+                                                        </div>
                                                     </div>
                                                     <div class="md-4" id="forgot_alert">
 

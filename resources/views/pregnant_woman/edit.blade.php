@@ -292,8 +292,8 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                             <input type="text" class="form-control" name="pregnancy_confirmation_method" value="{{ isset($pregnancy) ? $pregnancy->pregnancy_confirmation_method : '' }}">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <label class="form-label">Pregnancy Number</label>
-                                                            <input type="number" class="form-control" name="pregnancy_number" min="1" value="{{ isset($pregnancy) ? $pregnancy->pregnancy_number : '' }}">
+                                                            <label class="form-label">Pregnancy Number (1–20)</label>
+                                                            <input type="number" class="form-control" name="pregnancy_number" min="1" max="20" value="{{ isset($pregnancy) ? $pregnancy->pregnancy_number : '' }}" placeholder="e.g. 1 for first pregnancy">
                                                         </div>
                                                     </div>
 
@@ -418,8 +418,8 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                             <label class="form-label">Rhesus Factor</label>
                                                             <select name="rhesus_factor" class="form-select">
                                                                 <option value="">{{ __('app.please_choose_option') }}</option>
-                                                                <option value="Positive" {{ isset($pregnancy) && $pregnancy->rhesus_factor === 'Positive' ? 'selected' : '' }}>Positive</option>
-                                                                <option value="Negative" {{ isset($pregnancy) && $pregnancy->rhesus_factor === 'Negative' ? 'selected' : '' }}>Negative</option>
+                                                                <option value="Pos" {{ isset($pregnancy) && $pregnancy->rhesus_factor === 'Pos' ? 'selected' : '' }}>Positive</option>
+                                                                <option value="Neg" {{ isset($pregnancy) && $pregnancy->rhesus_factor === 'Neg' ? 'selected' : '' }}>Negative</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3">
