@@ -83,11 +83,11 @@
                                             <td>
                                                 <button class="btn btn-info btn-sm edit-btn" title="Edit" data-bs-toggle="modal" data-bs-target="#showModal-edit"
                                                 data-id ={{ $hospital->id}} data-name ={{ $hospital->name }}
-                                                data-region ={{ $hospital->region->name   }}  data-district ={{ $hospital->district->name   }}
+                                                data-region ={{ $hospital->region?->name   }}  data-district ={{ $hospital->district?->name   }}
                                                 data-region_id ={{ $hospital->region_id  }}  data-district_id ={{ $hospital->district_id  }}
-                                                data-ward ={{ $hospital->ward->name }}  data-ward_id ={{ $hospital->ward_id }} data-location ={{ $hospital->location }}
-                                                data-contact_person ={{ $hospital->personel->name }} data-msisdn ={{ $hospital->personel->phone_number }}
-                                                data-designation ={{ $hospital->personel->designation }}
+                                                data-ward ={{ $hospital->ward?->name }}  data-ward_id ={{ $hospital->ward_id }} data-location ={{ $hospital->location }}
+                                                data-contact_person ={{ $hospital->personel?->name }} data-msisdn ={{ $hospital->personel?->phone_number }}
+                                                data-designation ={{ $hospital->personel?->designation }}
                                                 ><i class="bx bx-edit"></i> Edit </button>
                                             </td>
 
@@ -155,7 +155,7 @@
                                         <label class="form-label" for="hospital"> Hospital Name <span id="required-field">*</span> </label>
                                         <input type="text" class="form-control" name="name"  placeholder="Enter Hospital name">
                                     </div>
-                                    <!-- Hospital contact and email removed -->
+
                                     <P style="margin-top: 15px;"><b>NOTE: Those field marked with <span id="required-field">*</span> are mandatory field</b></P>
 
                                 </div>
@@ -287,7 +287,7 @@ nexttab" data-nexttab="pills-success-tab"><i class="ri-arrow-right-line label-ic
                                         <input type="text" class="form-control" name="name"  id="name">
                                         <input type="hidden" name="hospital_id" id="hospital_id">
                                     </div>
-                                    <!-- Hospital contact and email removed -->
+
                                 </div>
                                 <div class="d-flex align-items-start gap-3 mt-4">
                                     <button type="button" class="btn btn-success btn-label right ms-auto nexttab
@@ -511,9 +511,9 @@ nexttab"><i class="ri-arrow-right-line label-icon align-middle fs-16 ms-2"></i>U
         $('#district').html(district);
         $('#ward').html(ward);
         $('#location').val(location);
-        $('#contact_person').val(contact_person);
-        $('#designation').val(designation);
-        $('#msisdn').val(msisdn);
+        $('#contact_person').val(contact_person || '');
+        $('#designation').val(designation || '');
+        $('#msisdn').val(msisdn || '');
         $('#region').val(region_id);
         $('#district').val(district_id);
         $('#ward').val(ward_id);

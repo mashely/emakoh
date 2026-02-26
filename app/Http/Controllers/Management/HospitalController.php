@@ -19,7 +19,7 @@ class HospitalController extends Controller
 
     public function list(){
         $regions  =Region::orderby('reg_name','ASC')->get();
-        $hospitals =Hospital::orderby('name','ASC')->get();
+        $hospitals =Hospital::with(['region','district','ward','personel'])->orderby('name','ASC')->get();
         return view('hospital.list',compact('regions','hospitals'));
     }
 
