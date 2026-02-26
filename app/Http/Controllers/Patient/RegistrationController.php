@@ -15,7 +15,7 @@ use App\Models\District;
 use App\Models\Ward;
 use App\Models\Hospital;
 use Illuminate\Support\Facades\DB;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Auth;
 
 
@@ -28,10 +28,10 @@ class RegistrationController extends Controller
 
     public function index(){
         if (Auth::user()->hasRole(1)) {
-           $clients =Patient::orderby('created_at','DESC')->get();
+           $clients =Patient::with('hospital')->orderby('created_at','DESC')->get();
         } else {
            $hospital_id =hospitalId(Auth::user()->id);
-           $clients =Patient::orderby('created_at','DESC')->where('hospital_id',$hospital_id)->get();
+           $clients =Patient::with('hospital')->orderby('created_at','DESC')->where('hospital_id',$hospital_id)->get();
         }
         return view('patients.list',compact('clients'));
     }
@@ -98,7 +98,8 @@ class RegistrationController extends Controller
         $services =Service::orderby('name','ASC')->get();
         $regions  =Region::orderby('reg_name','ASC')->get();
         $marital_status =MaritalStatus::orderby('name','ASC')->whereNot('id',4)->get();
-        return view('pregnant_woman.add',compact('gender','idtype','services','marital_status','regions'));
+        $hospitals =Hospital::orderby('name','ASC')->get();
+        return view('pregnant_woman.add',compact('gender','idtype','services','marital_status','regions','hospitals'));
     }
 
     public function create(Request $request){
@@ -120,7 +121,14 @@ class RegistrationController extends Controller
         $phone_number   =$request->input('phone_number');
         $service        =$request->input('service');
 
+        $requestedHospitalId =$request->input('hospital_id');
         $hospital_id =hospitalId(Auth::user()->id);
+
+        if (Auth::user()->hasRole(1)) {
+            if ($requestedHospitalId && Hospital::find($requestedHospitalId)) {
+                $hospital_id =(int) $requestedHospitalId;
+            }
+        }
 
         if (!$hospital_id){
             if (Auth::user()->hasRole(1)) {
@@ -149,8 +157,8 @@ class RegistrationController extends Controller
         $region   = $hospital ? $hospital->region_id : 1;
         $district = $hospital ? $hospital->district_id : 1;
         $ward     = $hospital ? $hospital->ward_id : 1;
-        $gender         = 3;
-        $marital_status = 4;
+        $gender         = Gender::where('name','Not specified')->value('id') ?? Gender::whereNotIn('id',[1,2])->value('id') ?? Gender::value('id');
+        $marital_status = MaritalStatus::where('name','Not specified')->value('id') ?? MaritalStatus::whereNot('id',1)->value('id') ?? MaritalStatus::value('id');
 
         $patient_reg =null;
         $usedExisting =false;
@@ -269,7 +277,7 @@ class RegistrationController extends Controller
             ->orderBy('created_at','DESC')
             ->first();
 
-        $pdf =PDF::loadView('pregnant_woman.pdf',[
+        $pdf =Pdf::loadView('pregnant_woman.pdf',[
             'patient' =>$patient,
             'pregnancy' =>$pregnancy,
         ]);
@@ -294,7 +302,6 @@ class RegistrationController extends Controller
         $this->validate($request,[
             'first_name'   =>'required',
             'last_name'    =>'required',
-            'gender'       =>'required',
             'dob'          =>'required',
             'phone_number' =>'required',
         ]);
@@ -303,7 +310,7 @@ class RegistrationController extends Controller
         $middle_name    =$request->input('middle_name');
         $last_name      =$request->input('last_name');
         $dob            =$request->input('dob');
-        $gender         =$request->input('gender');
+        $gender         =$request->input('gender',$existingPatient->gender_id);
         $marital_status =$request->input('marital_status',$existingPatient->marital_status_id);
         $id_type        =$request->input('id_type',$existingPatient->id_type);
         $id_number      =$request->input('id_number',$existingPatient->id_number);

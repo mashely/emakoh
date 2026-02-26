@@ -46,64 +46,10 @@
                 <td class="label">{{ __('app.date_of_birth') }}</td>
                 <td class="value">{{ $patient->dob }}</td>
             </tr>
-            <tr>
-                <td class="label">{{ __('app.gender') }}</td>
-                <td class="value">{{ $patient->gender ? $patient->gender->name : '' }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.marital_status') }}</td>
-                <td class="value">{{ $patient->marital ? $patient->marital->name : '' }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.id_type') }}</td>
-                <td class="value">{{ $patient->idType ? $patient->idType->name : '' }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.id_number') }}</td>
-                <td class="value">{{ $patient->id_number }}</td>
-            </tr>
         </table>
     </div>
 
-    <div class="section">
-        <div class="section-title">{{ __('app.address_contacts') }}</div>
-        <table>
-            <tr>
-                <td class="label">{{ __('app.region') }}</td>
-                <td class="value">{{ $patient->region ? $patient->region->reg_name : '' }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.district') }}</td>
-                <td class="value">{{ $patient->district ? $patient->district->dis_name : '' }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.ward') }}</td>
-                <td class="value">{{ $patient->ward ? $patient->ward->ward_name : '' }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.physical_location') }}</td>
-                <td class="value">{{ $patient->physical_address }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.phone_number') }}</td>
-                <td class="value">{{ $patient->phone_number }}</td>
-            </tr>
-            @if($pregnancy)
-            <tr>
-                <td class="label">{{ __('app.alternative_phone_number') }}</td>
-                <td class="value">{{ $pregnancy->alt_phone_number }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.emergency_contact_person') }}</td>
-                <td class="value">{{ $pregnancy->emergency_contact_name }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.emergency_contact_phone') }}</td>
-                <td class="value">{{ $pregnancy->emergency_contact_phone }}</td>
-            </tr>
-            @endif
-        </table>
-    </div>
+    
 
     @if($pregnancy)
     <div class="section">

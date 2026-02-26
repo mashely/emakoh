@@ -114,6 +114,15 @@
                                                 <hr>
                                                 <div>
                                                     <div class="row g-3">
+                                                        <div class="col-md-12">
+                                                            <label for="hospital_id" class="form-label">Hospital <i id="required-field"> * </i></label>
+                                                            <select class="form-select" name="hospital_id" id="hospital_id">
+                                                                <option value="">Please Choose Hospital</option>
+                                                                @foreach ($hospitals as $h)
+                                                                <option value="{{ $h->id }}">{{ $h->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                         <!-- Region/District/Ward selection removed -->
                                                     </div>
                                                     <div class="row">

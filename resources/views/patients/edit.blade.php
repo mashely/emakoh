@@ -92,41 +92,10 @@
                                                                 <label for="DOB" class="form-label">{{ __('app.date_of_birth') }}</label>
                                                                 <input type="date" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d')}}" value="{{ $client->dob }}">
                                                             </div>
-                                                            <div class="col-sm-6">
-                                                                <label for="Gender" class="form-label">{{ __('app.gender') }}</label>
-                                                               <select name="gender" class="form-select" id="">
-                                                                   <option value="{{$client->gender_id}}" selected>{{$client->gender->name}}</option>
-                                                                   @foreach ($gender as $item)
-                                                                       <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                                   @endforeach
-                                                               </select>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <label for="Gender" class="form-label">{{ __('app.marital_status') }}</label>
-                                                                <select name="marital_status" class="form-select" id="">
-                                                                    <option value="{{ $client->marital_status_id }}" selected>{{ $client->marital->name }}</option>
-                                                                    @foreach ($marital_status as $item)
-                                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
+                                                            <!-- gender and marital status removed -->
                                                         </div>
                                                         <hr>
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <label for="DOB" class="form-label">{{ __('app.id_type') }}</label>
-                                                                <select name="id_type" class="form-select" id="">
-                                                                    <option value="{{ $client->id_type }}" selected>{{ $client->idType->name }}</option>
-                                                                    @foreach ($idtype as $item)
-                                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <label for="Id" class="form-label">{{ __('app.id_number') }}</label>
-                                                                <input type="twxt" class="form-control" id="idnumber" name="id_number" value="{{ $client->id_number }}">
-                                                            </div>
-                                                        </div>
+                                                        <!-- ID type and ID number removed -->
 
 
 

@@ -55,9 +55,8 @@
                                             <th>{{ __('app.registration_date') }}</th>
                                             <th>{{ __('app.client_id') }}</th>
                                             <th>{{ __('app.client_name') }}</th>
-                                            <th>{{ __('app.gender') }}</th>
+                                            <th>Hospital</th>
                                             <th>{{ __('app.age') }}</th>
-                                            <th>{{ __('app.id_details') }}</th>
                                             <th>{{ __('app.status') }}</th>
                                             <th>{{ __('app.appointments') }}</th>
                                             <th>{{ __('app.action') }}</th>
@@ -70,17 +69,8 @@
                                             <td>{{ date('d-M-Y',strtotime($client->created_at)) }}</td>
                                             <td>{{ $client->patient_id}}</td>
                                             <td >{{ $client->first_name.' '.$client->last_name}}</td>
-                                            <td >{{ $client->gender->name }}</td>
+                                            <td >{{ $client->hospital?->name ?? __('app.not_specified_na') }}</td>
                                             <td >{{ age($client->dob)}}</td>
-                                            <td >
-                                                @if ($client->id_type)
-                                                I:T-{{ $client->idType->name }} <br>
-                                                I:N -{{ $client->id_number }}
-                                                @else
-                                                I:T-{{ __('app.not_specified_na') }} <br>
-                                                I:N -{{ $client->id_number }}
-                                                @endif
-                                            </td>
                                             <td>
                                                 @if ($client->status == "Active")
                                                 <span class="badge badge-soft-success text-uppercase">{{ __('app.active') }}</span>
