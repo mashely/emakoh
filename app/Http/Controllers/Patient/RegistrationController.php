@@ -105,29 +105,17 @@ class RegistrationController extends Controller
         $this->validate($request,[
             'first_name' =>'required',
             'last_name'  =>'required',
-            'gender'     =>'required',
-            'marital_status' =>'required',
             'dob'        =>'required',
-            'region'         =>'required',
-            'district'       =>'required',
-            'ward'           =>'required',
             'phone_number'   =>'required',
             'service'        =>'required',
-            'id_type'        =>'required',
         ]);
 
-        $id_number      =$request->input('id_number');
+        $id_number      =$request->input('id_number') ?: 'AUTO-'.uniqid();
         $first_name     =$request->input('first_name');
         $middle_name    =$request->input('middle_name');
         $last_name      =$request->input('last_name');
         $dob            =$request->input('dob');
-        $gender         =$request->input('gender');
-        $marital_status =$request->input('marital_status');
-        $id_type        =$request->input('id_type');
-        $id_number      =$request->input('id_number');
-        $region         =$request->input('region');
-        $district       =$request->input('district');
-        $ward           =$request->input('ward');
+        $id_type        =$request->input('id_type') ?: (IdType::value('id') ?? 1);
         $location       =$request->input('location');
         $phone_number   =$request->input('phone_number');
         $service        =$request->input('service');
@@ -153,24 +141,16 @@ class RegistrationController extends Controller
         }
 
         $existingPatient =null;
-        if ($id_number) {
-            $existingPatient =Patient::where('id_number',$id_number)->first();
+        if ($phone_number) {
+            $existingPatient =Patient::where('phone_number',$phone_number)->first();
         }
 
-        $region = $request->input('region');
-        if (!Region::find($region)) {
-            $region = 1;
-        }
-
-        $district = $request->input('district');
-        if (!District::find($district)) {
-            $district = 1;
-        }
-
-        $ward = $request->input('ward');
-        if (!Ward::find($ward)) {
-            $ward = 1;
-        }
+        $hospital = Hospital::find($hospital_id);
+        $region   = $hospital ? $hospital->region_id : 1;
+        $district = $hospital ? $hospital->district_id : 1;
+        $ward     = $hospital ? $hospital->ward_id : 1;
+        $gender         = 3;
+        $marital_status = 4;
 
         $patient_reg =null;
         $usedExisting =false;

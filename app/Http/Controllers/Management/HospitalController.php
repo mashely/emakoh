@@ -26,7 +26,6 @@ class HospitalController extends Controller
     public function create(Request $request){
         $this->validate($request,[
             'name' =>'required',
-            'hospital_contact' =>'required',
             'region' =>'required',
             'district' =>'required',
             'ward' =>'required',
@@ -35,8 +34,8 @@ class HospitalController extends Controller
         ]);
 
         $name =$request->input('name');
-        $hospital_contact =$request->input('hospital_contact');
-        $hospital_email =$request->input('hospital_email');
+        $hospital_contact =$request->input('hospital_contact','');
+        $hospital_email =$request->input('hospital_email','');
         $region =$request->input('region');
         $district =$request->input('district');
         $ward =$request->input('ward');
@@ -77,8 +76,6 @@ class HospitalController extends Controller
     public function update(Request $request){
         $this->validate($request,[
             'name' =>'required',
-            'hospital_contact' =>'required',
-            'hospital_email' =>'required',
             'region' =>'required',
             'district' =>'required',
             'ward' =>'required',
@@ -91,8 +88,8 @@ class HospitalController extends Controller
         //return $request->all();
 
         $name =$request->input('name');
-        $hospital_contact =$request->input('hospital_contact');
-        $hospital_email =$request->input('hospital_email');
+        $hospital_contact =$request->input('hospital_contact','');
+        $hospital_email =$request->input('hospital_email','');
         $region =$request->input('region');
         $district =$request->input('district');
         $ward =$request->input('ward');
