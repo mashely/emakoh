@@ -49,6 +49,15 @@ class RegistrationController extends Controller
 
     public function edit($id){
         $client =Patient::with(['gender','marital','idType','region','district','ward'])->findOrFail($id);
+
+        // Security check: Ensure the user belongs to the same hospital as the client
+        if (!Auth::user()->hasRole(1)) {
+            $hospital_id = hospitalId(Auth::user()->id);
+            if ($client->hospital_id != $hospital_id) {
+                abort(403, 'Unauthorized action.');
+            }
+        }
+
         $gender   =Gender::orderby('name','ASC')->whereNot('id',3)->get();
         $idtype   =IdType::get();
         $services =Service::orderby('name','ASC')->get();
@@ -104,8 +113,6 @@ class RegistrationController extends Controller
             'ward'           =>'required',
             'phone_number'   =>'required',
             'service'        =>'required',
-            'start_date'     =>'required',
-            'end_date'       =>'required',
             'id_type'        =>'required',
         ]);
 
@@ -124,8 +131,6 @@ class RegistrationController extends Controller
         $location       =$request->input('location');
         $phone_number   =$request->input('phone_number');
         $service        =$request->input('service');
-        $start_date     =$request->input('start_date');
-        $end_date       =$request->input('end_date');
 
         $hospital_id =hospitalId(Auth::user()->id);
 
@@ -179,10 +184,7 @@ class RegistrationController extends Controller
                 $region,$district,$ward,$location, $service,$phone_number,$gender,$hospital_id);
         }
 
-        $appointment =new ServiceAppointment();
-        $appointment =$appointment->registration($patient_reg,$start_date,$end_date,$service,$hospital_id);
-
-        if ($appointment) {
+        if ($patient_reg) {
             $isPregnancy = (bool) $request->input('is_pregnancy_registration');
             if ($isPregnancy) {
                 $this->storePregnancyDetails($request,$patient_reg);
@@ -300,6 +302,14 @@ class RegistrationController extends Controller
     public function update(Request $request){
         $client_id      =$request->input('client_id');
         $existingPatient =Patient::findOrFail($client_id);
+
+        // Security check: Ensure the user belongs to the same hospital as the client
+        if (!Auth::user()->hasRole(1)) {
+            $hospital_id = hospitalId(Auth::user()->id);
+            if ($existingPatient->hospital_id != $hospital_id) {
+                abort(403, 'Unauthorized action.');
+            }
+        }
 
         $this->validate($request,[
             'first_name'   =>'required',

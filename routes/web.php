@@ -69,6 +69,7 @@ Route::post('client/search','Patient\RegistrationController@search_client')->nam
 Route::get('client/{id}/edit','Patient\RegistrationController@edit')->name('client.edit');
 Route::post('client/update','Patient\RegistrationController@update')->name('client.update');
 Route::post('appointment/update','Patient\AppointmentController@update')->name('appointment.update');
+Route::post('appointment/confirm','Patient\AppointmentController@confirm')->name('appointment.confirm');
 
 
 //reports

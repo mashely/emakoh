@@ -80,6 +80,13 @@
                                                 data-start_date ={{ $appointment->start_date }} data-end_date ={{ $appointment->end_date }}
                                                 data-reason ={{ $appointment->edit_reason  }}
                                                 ><i class="bx bx-edit"></i> Edit </button>
+                                                @if (empty($appointment->status) && $appointment->end_date <= date('Y-m-d'))
+                                                <button class="btn btn-success btn-sm confirm-btn" data-id="{{ $appointment->id }}">
+                                                    <i class="bx bx-check"></i> Confirm Visit
+                                                </button>
+                                                @elseif($appointment->status == 1)
+                                                <span class="badge bg-primary">Confirmed</span>
+                                                @endif
                                             </td>
 
                                             </tr>
@@ -293,6 +300,27 @@
       });
   });
   });
+</script>
+<script>
+    $(document).on('click','.confirm-btn',function(){
+        var id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type:'POST',
+            url:"{{ route('appointment.confirm') }}",
+            data:{reminder_id:id},
+            success:function(response){
+                location.reload();
+            },
+            error:function(response){
+                alert('Failed to confirm visit');
+            }
+        });
+    });
 </script>
     
 @endpush

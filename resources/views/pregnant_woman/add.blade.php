@@ -639,7 +639,7 @@
                                                     <hr class="my-4 text-muted">
 
                                                     <div>
-                                                        <h5 class="text-center">Next Visit Reminder</h5>
+                                                        <h5 class="text-center">Service</h5>
                                                     </div>
 
                                                     <div class="row gy-3">
@@ -653,15 +653,7 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="col-md-6">
-                                                            <label for="cc-expiration" class="form-label">Start Date <i id="required-field"> * </i></label>
-                                                            <input type="date" class="form-control" name="start_date" min="{{ date('Y-m-d')}}" required>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <label for="cc-cvv" class="form-label">End Date <i id="required-field"> * </i></label>
-                                                            <input type="date" class="form-control" name="end_date" min="{{ date('Y-m-d')}}" required>
-                                                        </div>
+                                                       
                                                         <div class="col-md-12" id="patient_alert"></div>
                                                     </div>
                                                     <P style="margin-top: 15px;"><b>NOTE: Those field marked with <span id="required-field">*</span> are mandatory field</b></P>
