@@ -13,6 +13,7 @@ use Auth;
 class AppointmentController extends Controller
 {
     public function __construct(){
+        parent::__construct();
         $this->middleware('auth');
     }
 
@@ -33,14 +34,16 @@ class AppointmentController extends Controller
     public function create(Request $request){
         $this->validate($request,[
             'service'    =>'required',
-            'start_date' =>'required',
-            'end_date'   =>'required',
+            'start_date' =>'required|date',
+            'end_date'   =>'required|date|after_or_equal:start_date',
+            'frequency'  =>'required|in:weekly,monthly',
         ]);
 
         $patient_id  =$request->input('patient_id');
         $service     =$request->input('service');
         $start_date  =$request->input('start_date');
         $end_date    =$request->input('end_date');
+        $frequency   =$request->input('frequency');
 
         $hospital_id =hospitalId(Auth::user()->id);
 
@@ -51,18 +54,36 @@ class AppointmentController extends Controller
             ],500);
         }
 
-        $appointment =new ServiceAppointment();
-        $appointment =$appointment->registration($patient_id,$start_date,$end_date,$service,$hospital_id);
+        $created =0;
+        $current = \Carbon\Carbon::parse($start_date);
+        $end     = \Carbon\Carbon::parse($end_date);
 
-        if ($appointment) {
+        while ($current->lte($end)) {
+            $appointment = new ServiceAppointment();
+            $appointment = $appointment->registration(
+                $patient_id,
+                $current->format('Y-m-d'),
+                $current->format('Y-m-d'),
+                $service,
+                $hospital_id
+            );
+            if ($appointment) $created++;
+            if ($frequency === 'weekly') {
+                $current->addWeek();
+            } else {
+                $current->addMonth();
+            }
+        }
+
+        if ($created > 0) {
             return response()->json([
                 'success' =>true,
-                'message' =>'Reminder created Successfully'
+                'message' =>'Reminders created Successfully'
             ],200);
         } else {
             return response()->json([
                 'success' =>false,
-                'errors'  =>'Fail to Create Reminder'
+                'errors'  =>'Fail to Create Reminders'
             ],500);
         }
     }
@@ -107,5 +128,29 @@ class AppointmentController extends Controller
                 'errors'  =>'Fail to Update Reminder'
             ],500);
         }
+    }
+
+    public function confirm(Request $request){
+        $this->validate($request,[
+            'reminder_id' =>'required|integer|exists:service_appointments,id',
+        ]);
+
+        $reminder_id =$request->input('reminder_id');
+        $reminder    =ServiceAppointment::find($reminder_id);
+        if (!$reminder) {
+            return response()->json([
+                'success' =>false,
+                'errors'  =>'Reminder not found'
+            ],404);
+        }
+
+        $reminder->status =1;
+        $reminder->attended_by =Auth::user()->id;
+        $reminder->save();
+
+        return response()->json([
+            'success' =>true,
+            'message' =>'Visit confirmed Successfully'
+        ],200);
     }
 }

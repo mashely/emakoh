@@ -65,13 +65,13 @@
                                             <p class="text-muted">Reset Forgetten Password.</p>
 
                                             <div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
-                                                Enter Reset Code 
+                                                Enter your registered email and your new password.
                                             </div>
                                             <div class="p-2">
                                                 <form id="reset_password">
                                                     <div class="mb-4">
-                                                        <label class="form-label">Reset Code</label>
-                                                        <input type="number" class="form-control" name="code" placeholder="Enter Reset Code" required>
+                                                        <label class="form-label">Email</label>
+                                                        <input type="email" class="form-control" name="email" placeholder="Enter registered email" required>
                                                     </div>
                                                     <div class="mb-4">
                                                         <label class="form-label">Password</label>

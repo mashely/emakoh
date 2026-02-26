@@ -70,14 +70,14 @@
                     <button type="button" class="btn btn-light waves-effect"
                         id="page-header-cart-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class='bx bx-search-alt-2'></i> Search ....
+                        <i class='bx bx-search-alt-2'></i> {{ __('app.search') }} ....
                     </button>
                     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end p-0 dropdown-menu-cart"
                         aria-labelledby="page-header-cart-dropdown">
                         <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
                             <div class="row align-items-center text-center">
                                 <div class="col">
-                                    <h6 class="m-0 fs-16 fw-semibold"> Client Search</h6>
+                                    <h6 class="m-0 fs-16 fw-semibold"> {{ __('app.client_search') }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -86,19 +86,19 @@
                                 <form action="{{ route('client.search')}}" method="POST">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="Client ID" class="form-label">Client ID</label>
+                                        <label for="Client ID" class="form-label">{{ __('app.search_client_id') }}</label>
                                         <input type="number"  class="form-control" name="client_id" placeholder="Enter Client ID ..."  />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="Phone Number" class="form-label">Phone Number</label>
+                                        <label for="Phone Number" class="form-label">{{ __('app.search_phone_number') }}</label>
                                         <input type="number" class="form-control" name="phone_number" placeholder="Enter Phone Number ....." />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="Phone Number" class="form-label">Id Number</label>
+                                        <label for="Phone Number" class="form-label">{{ __('app.search_id_number') }}</label>
                                         <input type="number" class="form-control" name="id_number" placeholder="Enter ID Number ....." />
                                     </div>
                                     <div class="mb-3">
-                                        <button  type="submit" class="btn btn-success text-center w-100"> <i class='bx bx-search-alt-2'></i> Search</button>
+                                        <button  type="submit" class="btn btn-success text-center w-100"> <i class='bx bx-search-alt-2'></i> {{ __('app.search') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -119,6 +119,29 @@
                         <i class='bx bx-moon fs-22'></i>
                     </button>
                 </div>
+                @if (Auth::check() && !Auth::user()->hasRole(1))
+                <div class="dropdown ms-1 header-item d-none d-sm-flex">
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+                        id="page-header-language-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="bx bx-globe fs-22"></i>
+                        <span class="ms-1">{{ strtoupper(app()->getLocale()) }}</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <form method="POST" action="{{ route('locale.switch') }}">
+                            @csrf
+                            <button type="submit" name="locale" value="en"
+                                class="dropdown-item {{ app()->getLocale() === 'en' ? 'active' : '' }}">
+                                {{ __('app.english') }}
+                            </button>
+                            <button type="submit" name="locale" value="sw"
+                                class="dropdown-item {{ app()->getLocale() === 'sw' ? 'active' : '' }}">
+                                {{ __('app.swahili') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @endif
                 <div class="dropdown ms-sm-3 header-item topbar-user">
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -134,19 +157,19 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}!</h6>
-                        <a class="dropdown-item" href="#"><i
+                        <h6 class="dropdown-header">{{ __('app.welcome') }} {{ Auth::user()->name }}!</h6>
+                        <a class="dropdown-item" href="{{ route('profile.index')}}"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
-                                class="align-middle">Profile</span></a>
+                                class="align-middle">{{ __('app.profile') }}</span></a>
                         <a class="dropdown-item" href="#"><i
                                 class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
-                                class="align-middle">Settings</span></a>
+                                class="align-middle">{{ __('app.settings') }}</span></a>
                         {{-- <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
                                 class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Lock screen</span></a> --}}
                         <a class="dropdown-item" href="{{ route('logout.user')}}"><i
                                 class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
-                                class="align-middle" data-key="t-logout">Logout</span></a>
+                                class="align-middle" data-key="t-logout">{{ __('app.logout') }}</span></a>
                     </div>
                 </div>
             </div>

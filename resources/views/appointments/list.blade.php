@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">CLient Reminders</h4>
+                    <h4 class="mb-sm-0">{{ __('app.client_reminders') }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Reminders</a></li>
-                            <li class="breadcrumb-item active">CLient Reminders</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">{{ __('app.reminders_breadcrumb') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('app.client_reminders') }}</li>
                         </ol>
                     </div>
 
@@ -25,7 +25,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0 text-center">CLient Reminders</h4>
+                        <h4 class="card-title mb-0 text-center">{{ __('app.client_reminders') }}</h4>
                     </div><!-- end card header -->
 
                     <div class="card-body">
@@ -77,6 +77,13 @@
                                                 data-start_date ={{ $appointment->start_date }} data-end_date ={{ $appointment->end_date }}
                                                 data-reason ={{ $appointment->edit_reason  }}
                                                 ><i class="bx bx-edit"></i> Edit </button>
+                                                @if (empty($appointment->status) && $appointment->end_date <= date('Y-m-d'))
+                                                <button class="btn btn-success btn-sm confirm-btn" data-id="{{ $appointment->id }}">
+                                                    <i class="bx bx-check"></i> Confirm Visit
+                                                </button>
+                                                @elseif($appointment->status == 1)
+                                                <span class="badge bg-primary">Confirmed</span>
+                                                @endif
                                             </td>
 
                                             </tr>
@@ -147,6 +154,15 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">Frequency</label>
+                            <select name="frequency" class="form-select" required>
+                                <option value="" selected>Please select Frequency</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="email-field" class="form-label">Start date</label>
                             <input type="date" class="form-control" name="start_date" min="{{ date('Y-m-d')}}" required />
                         </div>
@@ -162,7 +178,7 @@
                     <div class="modal-footer">
                         <div class="hstack gap-2 justify-content-end">
                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" id="service_btn"> <i class=" bx bxs-save"></i> Add Service</button>
+                            <button type="submit" class="btn btn-success" id="service_btn"> <i class=" bx bxs-save"></i> Add Reminders</button>
                         </div>
                     </div>
                 </form>
@@ -334,6 +350,27 @@
       });
   });
   });
+</script>
+<script>
+    $(document).on('click','.confirm-btn',function(){
+        var id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type:'POST',
+            url:"{{ route('appointment.confirm') }}",
+            data:{reminder_id:id},
+            success:function(response){
+                location.reload();
+            },
+            error:function(response){
+                alert('Failed to confirm visit');
+            }
+        });
+    });
 </script>
     
 @endpush

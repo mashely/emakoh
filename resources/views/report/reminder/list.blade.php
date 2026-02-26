@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">CLient Reminders</h4>
+                    <h4 class="mb-sm-0">{{ __('app.client_reminders') }}</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Reminders</a></li>
-                            <li class="breadcrumb-item active">CLient Reminders</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">{{ __('app.reminders_breadcrumb') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('app.client_reminders') }}</li>
                         </ol>
                     </div>
 
@@ -25,7 +25,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title mb-0 text-center">CLient Reminders</h4>
+                        <h4 class="card-title mb-0 text-center">{{ __('app.client_reminders') }}</h4>
                     </div><!-- end card header -->
 
                     <div class="card-body">
@@ -34,11 +34,11 @@
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-md-3">
-                                        <label for="Start Date">Start Date (From)</label>
+                                        <label for="Start Date">{{ __('app.start_date_from') }}</label>
                                         <input type="date" name="start_date" class="form-control" placeholder="Start Date">
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="Start Date">Start Date (to)</label>
+                                        <label for="Start Date">{{ __('app.start_date_to') }}</label>
                                         <input type="date" name="end_date" class="form-control" placeholder="End Date">
                                     </div>
                                     <div class="col-md-3">
@@ -68,7 +68,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="Start Date">Hospital</label>
+                                        <label for="Start Date">{{ __('app.hospital_filter') }}</label>
                                         <select class="form-select" name="hospital_id">
                                             <option value="" selected>Please Choose Hospital</option>
                                             @foreach ($hospitals as $item)
@@ -77,20 +77,20 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="Start Date">Services</label>
+                                        <label for="Start Date">{{ __('app.services') }}</label>
                                         <select class="form-select" name="service" >
-                                            <option value="" selected>Please Choose Service</option>
+                                            <option value="" selected>{{ __('app.please_choose_service') }}</option>
                                             @foreach ($services as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="Start Date">Reminder Status</label>
+                                        <label for="Start Date">{{ __('app.reminder_status') }}</label>
                                         <select class="form-select" name="reminder_status" >
-                                            <option value="" selected>Please Choose Status</option>
-                                            <option value="OPEN">OPEN</option>
-                                            <option value="CLOSED">CLOSED</option>
+                                            <option value="" selected>{{ __('app.please_choose_status') }}</option>
+                                            <option value="OPEN">{{ __('app.open') }}</option>
+                                            <option value="CLOSED">{{ __('app.closed') }}</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">

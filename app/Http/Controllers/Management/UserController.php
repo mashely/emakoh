@@ -13,6 +13,7 @@ use Auth;
 class UserController extends Controller
 {
     public function __construct(){
+        parent::__construct();
         $this->middleware('auth');
     }
 
@@ -146,5 +147,11 @@ class UserController extends Controller
                 'errors'  =>'User Update Failed'
             ],500);
         }
+    }
+
+    public function profile(){
+        $user =Auth::user();
+        $gender =Gender::orderby('name','ASC')->whereNot('id',3)->get();
+        return view('users.profile',compact('user','gender'));
     }
 }
