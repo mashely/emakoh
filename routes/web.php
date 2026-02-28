@@ -97,3 +97,10 @@ Route::get('risk-categories/list','Management\RiskFactorCategoryController@list'
 Route::post('risk-category/create','Management\RiskFactorCategoryController@create')->name('risk_category.create');
 Route::post('risk-category/update','Management\RiskFactorCategoryController@update')->name('risk_category.update');
 Route::post('risk-category/delete','Management\RiskFactorCategoryController@delete')->name('risk_category.delete');
+
+// WhatsApp Cloud API configuration
+Route::get('whatsapp/config','Management\WhatsappConfigController@index')->name('whatsapp.config');
+Route::post('whatsapp/config/store','Management\WhatsappConfigController@store')->name('whatsapp.config.store');
+Route::post('whatsapp/config/update','Management\WhatsappConfigController@update')->name('whatsapp.config.update');
+Route::post('whatsapp/config/activate','Management\WhatsappConfigController@activate')->name('whatsapp.config.activate');
+Route::post('whatsapp/config/delete','Management\WhatsappConfigController@delete')->name('whatsapp.config.delete');

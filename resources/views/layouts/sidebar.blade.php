@@ -98,6 +98,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('whatsapp.config')}}">
+                        <i class="bx bxl-whatsapp"></i> <span data-key="t-landing">WhatsApp</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('settings.index')}}">
                         <i class="bx bx-cog"></i> <span data-key="t-landing">{{ __('app.settings') }}</span>
                     </a>
