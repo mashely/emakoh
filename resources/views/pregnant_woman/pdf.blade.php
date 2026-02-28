@@ -72,19 +72,7 @@
                 <td class="value">{{ $pregnancy->miscarriages }}</td>
             </tr>
             <tr>
-                <td class="label">{{ __('app.stillbirths') }}</td>
-                <td class="value">{{ $pregnancy->stillbirths }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.cesarean_sections') }}</td>
-                <td class="value">{{ $pregnancy->cesarean_sections }}</td>
-            </tr>
-            <tr>
-                <td class="label">{{ __('app.preterm_births') }}</td>
-                <td class="value">{{ $pregnancy->preterm_births }}</td>
-            </tr>
-            <tr>
-                <td class="label">LMP</td>
+                <td class="label">LNMP</td>
                 <td class="value">{{ $pregnancy->lmp }}</td>
             </tr>
             <tr>

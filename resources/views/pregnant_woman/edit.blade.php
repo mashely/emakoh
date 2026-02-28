@@ -93,10 +93,8 @@
                                                                 <label for="DOB" class="form-label">{{ __('app.date_of_birth') }}</label>
                                                                 <input type="date" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d')}}" value="{{ $client->dob }}">
                                                             </div>
-                                                            <!-- gender and marital status removed -->
                                                         </div>
                                                         <hr>
-                                                        <!-- ID type and ID number removed -->
 
 
 
@@ -201,27 +199,15 @@ nexttab" data-nexttab="v-pills-bill-address-tab"><i class="ri-arrow-right-line l
                                                     </div>
 
                                                     <div class="row gy-3 mt-1">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <label class="form-label">{{ __('app.miscarriages_abortions') }}</label>
                                                             <input type="number" class="form-control" name="miscarriages" min="0" value="{{ isset($pregnancy) ? $pregnancy->miscarriages : '' }}">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label class="form-label">{{ __('app.stillbirths') }}</label>
-                                                            <input type="number" class="form-control" name="stillbirths" min="0" value="{{ isset($pregnancy) ? $pregnancy->stillbirths : '' }}">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label class="form-label">{{ __('app.cesarean_sections') }}</label>
-                                                            <input type="number" class="form-control" name="cesarean_sections" min="0" value="{{ isset($pregnancy) ? $pregnancy->cesarean_sections : '' }}">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label class="form-label">{{ __('app.preterm_births') }}</label>
-                                                            <input type="number" class="form-control" name="preterm_births" min="0" value="{{ isset($pregnancy) ? $pregnancy->preterm_births : '' }}">
                                                         </div>
                                                     </div>
 
                                                     <div class="row gy-3 mt-1">
                                                         <div class="col-md-4">
-                                                            <label class="form-label">Last Menstrual Period (LMP)</label>
+                                                            <label class="form-label">Last Normal Menstrual Period (LNMP)</label>
                                                             <input type="date" class="form-control" name="lmp" max="{{ date('Y-m-d')}}" value="{{ isset($pregnancy) ? $pregnancy->lmp : '' }}">
                                                         </div>
                                                         <div class="col-md-4">

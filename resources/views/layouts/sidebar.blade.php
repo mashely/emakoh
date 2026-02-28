@@ -88,6 +88,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('chws.list')}}">
+                        <i class="bx bx-group"></i> <span data-key="t-landing">Community Health Workers</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('risk_categories.list')}}">
+                        <i class="bx bx-category"></i> <span data-key="t-landing">Risk Categories</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('settings.index')}}">
                         <i class="bx bx-cog"></i> <span data-key="t-landing">{{ __('app.settings') }}</span>
                     </a>

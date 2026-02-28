@@ -86,3 +86,14 @@ Route::get('reminders/report','Report\ReminderController@index')->name('reminder
 Route::post('reminder/filter','Report\ReminderController@filter_reminders')->name('reminder.filter');
 Route::post('reminder/generate/report','Report\ReminderController@generate_report')->name('reminder.get.report');
 
+// CHW management
+Route::get('chws/list','Management\ChwController@list')->name('chws.list');
+Route::post('chw/create','Management\ChwController@create')->name('chw.create');
+Route::post('chw/update','Management\ChwController@update')->name('chw.update');
+Route::post('chw/delete','Management\ChwController@delete')->name('chw.delete');
+
+// Risk factor categories management
+Route::get('risk-categories/list','Management\RiskFactorCategoryController@list')->name('risk_categories.list');
+Route::post('risk-category/create','Management\RiskFactorCategoryController@create')->name('risk_category.create');
+Route::post('risk-category/update','Management\RiskFactorCategoryController@update')->name('risk_category.update');
+Route::post('risk-category/delete','Management\RiskFactorCategoryController@delete')->name('risk_category.delete');

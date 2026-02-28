@@ -92,10 +92,8 @@
                                                                 <label for="DOB" class="form-label">{{ __('app.date_of_birth') }}</label>
                                                                 <input type="date" class="form-control" id="dob" name="dob" max="{{ date('Y-m-d')}}" value="{{ $client->dob }}">
                                                             </div>
-                                                            <!-- gender and marital status removed -->
                                                         </div>
                                                         <hr>
-                                                        <!-- ID type and ID number removed -->
 
 
 

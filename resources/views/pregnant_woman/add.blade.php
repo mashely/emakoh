@@ -94,7 +94,6 @@
                                                             </div>
                                                         </div>
                                                         <hr>
-                                                        <!-- ID Type and ID Number removed -->
 
                                                         <P><b>{{ __('app.note_required_fields') }}</b></P>
 
@@ -123,7 +122,6 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <!-- Region/District/Ward selection removed -->
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -187,27 +185,15 @@
                                                     </div>
 
                                                     <div class="row gy-3 mt-1">
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-4">
                                                             <label class="form-label">{{ __('app.miscarriages_abortions') }}</label>
                                                             <input type="number" class="form-control" name="miscarriages" min="0">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label class="form-label">{{ __('app.stillbirths') }}</label>
-                                                            <input type="number" class="form-control" name="stillbirths" min="0">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label class="form-label">{{ __('app.cesarean_sections') }}</label>
-                                                            <input type="number" class="form-control" name="cesarean_sections" min="0">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label class="form-label">{{ __('app.preterm_births') }}</label>
-                                                            <input type="number" class="form-control" name="preterm_births" min="0">
                                                         </div>
                                                     </div>
 
                                                     <div class="row gy-3 mt-1">
                                                         <div class="col-md-4">
-                                                            <label class="form-label">Last Menstrual Period (LMP)</label>
+                                                            <label class="form-label">Last Normal Menstrual Period (LNMP)</label>
                                                             <input type="date" class="form-control" name="lmp" max="{{ date('Y-m-d')}}">
                                                         </div>
                                                         <div class="col-md-4">
