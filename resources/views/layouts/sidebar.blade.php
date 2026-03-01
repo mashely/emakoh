@@ -103,6 +103,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('whatsapp.chat')}}">
+                        <i class="bx bx-chat"></i> <span data-key="t-landing">WhatsApp Chat</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('settings.index')}}">
                         <i class="bx bx-cog"></i> <span data-key="t-landing">{{ __('app.settings') }}</span>
                     </a>

@@ -104,3 +104,13 @@ Route::post('whatsapp/config/store','Management\WhatsappConfigController@store')
 Route::post('whatsapp/config/update','Management\WhatsappConfigController@update')->name('whatsapp.config.update');
 Route::post('whatsapp/config/activate','Management\WhatsappConfigController@activate')->name('whatsapp.config.activate');
 Route::post('whatsapp/config/delete','Management\WhatsappConfigController@delete')->name('whatsapp.config.delete');
+
+// WhatsApp chat module
+Route::get('whatsapp/chat','Communication\WhatsappChatController@index')->name('whatsapp.chat');
+Route::get('whatsapp/chat/conversations','Communication\WhatsappChatController@conversations')->name('whatsapp.chat.conversations');
+Route::get('whatsapp/chat/thread/{id}','Communication\WhatsappChatController@thread')->name('whatsapp.chat.thread');
+Route::post('whatsapp/chat/send','Communication\WhatsappChatController@send')->name('whatsapp.chat.send');
+
+// WhatsApp webhooks
+Route::get('webhook/whatsapp','Webhooks\WhatsappWebhookController@verify')->name('webhook.whatsapp.verify');
+Route::post('webhook/whatsapp','Webhooks\WhatsappWebhookController@receive')->name('webhook.whatsapp.receive');
